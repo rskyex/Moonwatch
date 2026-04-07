@@ -20,4 +20,11 @@ export interface InfrastructureProject {
   sources: SourceRef[];
   createdAt: string; // ISO 8601
   updatedAt: string; // ISO 8601
+
+  /** Editorial: why this infrastructure matters for the lunar ecosystem */
+  whyItMatters?: string;
+  /** Functional category: communications | navigation | landing-systems | mobility | habitation | power | isru | logistics | orbital */
+  category?: string;
+  /** Technology readiness: conceptual | prototype | flight-proven | operational-heritage */
+  maturity?: string;
 }

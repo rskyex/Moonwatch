@@ -27,5 +27,9 @@ export default async function RegionPage({ params }: RegionPageProps) {
 
   const missions = getRegionMissions(region.id);
 
-  return <RegionDetail region={region} missions={missions} />;
+  return (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <RegionDetail region={region} missions={missions} />
+    </div>
+  );
 }

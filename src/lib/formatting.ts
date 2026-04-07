@@ -154,6 +154,11 @@ const infrastructureTypeLabels: Record<InfrastructureType, string> = {
   [InfrastructureType.PowerSystem]: "Power System",
   [InfrastructureType.LaunchVehicle]: "Launch Vehicle",
   [InfrastructureType.GatewayModule]: "Gateway Module",
+  [InfrastructureType.Communications]: "Communications",
+  [InfrastructureType.Navigation]: "Navigation",
+  [InfrastructureType.ISRU]: "ISRU",
+  [InfrastructureType.Logistics]: "Logistics",
+  [InfrastructureType.SurfaceMobility]: "Surface Mobility",
   [InfrastructureType.Other]: "Other",
 };
 

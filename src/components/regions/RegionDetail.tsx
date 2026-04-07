@@ -47,11 +47,66 @@ export default function RegionDetail({ region, missions }: RegionDetailProps) {
         </section>
       )}
 
-      {/* Missions */}
+      {/* Scientific Interest */}
+      {region.scientificInterest && (
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Scientific Interest
+          </h2>
+          <p className="text-sm text-muted leading-relaxed max-w-2xl">
+            {region.scientificInterest}
+          </p>
+        </section>
+      )}
+
+      {/* Strategic Interest */}
+      {region.strategicInterest && (
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Strategic Interest
+          </h2>
+          <p className="text-sm text-muted leading-relaxed max-w-2xl">
+            {region.strategicInterest}
+          </p>
+        </section>
+      )}
+
+      {/* Resources */}
+      {region.resources && region.resources.length > 0 && (
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Resources
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {region.resources.map((resource) => (
+              <span
+                key={resource}
+                className="inline-block text-xs font-medium text-muted bg-muted/10 border border-border rounded-full px-3 py-1"
+              >
+                {resource}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Terrain */}
+      {region.terrain && (
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Terrain
+          </h2>
+          <p className="text-sm text-muted leading-relaxed max-w-2xl">
+            {region.terrain}
+          </p>
+        </section>
+      )}
+
+      {/* Related Missions */}
       {missions.length > 0 && (
-        <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
-            Missions
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Related Missions
           </h2>
           <ul className="space-y-2">
             {missions.map((mission) => (
@@ -66,6 +121,34 @@ export default function RegionDetail({ region, missions }: RegionDetailProps) {
                   label={getMissionStatusLabel(mission.status)}
                   colorClass={getMissionStatusColor(mission.status)}
                 />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Source Trail */}
+      {region.sources && region.sources.length > 0 && (
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Source Trail
+          </h2>
+          <ul className="space-y-1">
+            {region.sources.map((source) => (
+              <li key={source.sourceId}>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-accent hover:underline break-all"
+                >
+                  {source.url}
+                </a>
+                {source.quote && (
+                  <p className="text-xs text-muted italic mt-0.5 ml-2">
+                    &ldquo;{source.quote}&rdquo;
+                  </p>
+                )}
               </li>
             ))}
           </ul>

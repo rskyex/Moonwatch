@@ -40,11 +40,13 @@ export default async function InfrastructurePage({
     : undefined;
 
   return (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <InfrastructureDetail
       project={project}
       entities={entities}
       missions={missions}
       region={region}
     />
+    </div>
   );
 }

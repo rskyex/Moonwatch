@@ -24,4 +24,11 @@ export interface Mission {
   sources: SourceRef[];
   createdAt: string; // ISO 8601
   updatedAt: string; // ISO 8601
+
+  /** Editorial: why this mission matters for lunar exploration as a system */
+  strategicSignificance?: string;
+  /** Short phrase: scientific | commercial | infrastructure | policy | exploration */
+  significanceCategory?: string;
+  /** Program this mission belongs to (e.g. "Artemis", "Chang'e", "CLPS") */
+  program?: string;
 }

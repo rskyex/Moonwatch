@@ -25,6 +25,9 @@ export const updates: Update[] = [
     tags: ["artemis-program", "crewed", "training"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Full-mission rehearsals are the final validation gate before committing to a launch date. Successful completion signals that crew procedures are mature enough for the first crewed deep-space mission in over 50 years.",
+    operationalCategory: "preparing-for-launch",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -44,6 +47,9 @@ export const updates: Update[] = [
     tags: ["chang-e-program", "south-pole", "design-review"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Critical design review is the last major gate before hardware fabrication begins. Passing CDR means the mini-flying probe, orbiter, and lander designs are frozen, locking in the technical approach for China's first south pole mission and ILRS site selection.",
+    operationalCategory: "program-development",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -63,6 +69,9 @@ export const updates: Update[] = [
     tags: ["clps", "commercial-lunar", "contract"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Contract extensions signal NASA's growing confidence in Intuitive Machines as a repeat provider. Expanding payload capacity on IM-3 increases the science return per mission dollar and deepens the commercial pipeline that sustains the CLPS business model.",
+    operationalCategory: "program-development",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -82,6 +91,9 @@ export const updates: Update[] = [
     tags: ["gateway", "infrastructure", "testing"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "The PPE is the first module of the Lunar Gateway and its solar-electric propulsion system defines the station's orbital maintenance capability. Passing thermal vacuum testing clears the highest-risk hardware qualification milestone before launch, keeping Gateway on track as the logistics hub for sustained Artemis operations.",
+    operationalCategory: "infrastructure-planning",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -101,6 +113,9 @@ export const updates: Update[] = [
     tags: ["chandrayaan", "sample-return", "mission-design"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Formal architecture approval commits ISRO to the dual-launch approach with lunar orbit rendezvous, the most complex mission profile India has ever attempted. This decision locks in the technical path and budget allocation for the country's first sample return, with direct implications for India's future crewed lunar program.",
+    operationalCategory: "program-development",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -120,6 +135,9 @@ export const updates: Update[] = [
     tags: ["commercial-lunar", "integration", "hakuto-r"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Final integration marks the transition from component testing to flight-ready assembly. For ispace, it demonstrates that the redesigned guidance and propulsion systems that caused Mission 1's crash have been corrected and qualified for flight.",
+    operationalCategory: "preparing-for-launch",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -139,6 +157,9 @@ export const updates: Update[] = [
     tags: ["prospect", "instruments", "international-cooperation"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "PROSPECT is the most capable volatile-analysis instrument ever built for the lunar surface, and its delivery to the Luna 27 integration team is a tangible sign that European-Russian lunar cooperation continues despite broader geopolitical tensions. The instrument's sub-surface drilling capability is unique among planned missions.",
+    operationalCategory: "international-coordination",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -158,6 +179,9 @@ export const updates: Update[] = [
     tags: ["starship", "refueling", "hls", "artemis-program"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Orbital propellant transfer is the critical enabling technology for Starship-based lunar landing. Without it, no architecture exists to deliver the mass needed for crewed lunar surface access under the Artemis program. This test retires the single largest technical unknown in the Artemis III critical path.",
+    operationalCategory: "infrastructure-planning",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -177,6 +201,9 @@ export const updates: Update[] = [
     tags: ["ilrs", "international-cooperation", "policy"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "ILRS partner expansion is a direct counterweight to the Artemis Accords coalition, accelerating the emergence of two competing frameworks for lunar governance. Each new signatory adds political legitimacy and potential hardware contributions to the China-Russia lunar base effort.",
+    operationalCategory: "international-coordination",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -196,6 +223,9 @@ export const updates: Update[] = [
     tags: ["griffin", "commercial-lunar", "assembly"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "Griffin is the largest commercial lander in development and Astrobotic's opportunity to recover credibility after the Peregrine failure. Its successful delivery would validate a heavier payload class for CLPS, opening the door to rover-scale commercial deliveries that NASA's exploration roadmap depends on.",
+    operationalCategory: "preparing-for-launch",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -215,6 +245,9 @@ export const updates: Update[] = [
     tags: ["clps", "commercial-lunar", "procurement"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "New task orders sustain the commercial lunar delivery pipeline and signal that NASA views CLPS as a long-term procurement strategy, not a one-off experiment. Three simultaneous awards also reduce schedule risk by ensuring that delays from any single provider do not halt the flow of payloads to the surface.",
+    operationalCategory: "program-development",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -234,6 +267,9 @@ export const updates: Update[] = [
     tags: ["blue-moon", "propulsion", "testing"],
     curatedBy: "editorial",
     sources: [],
+    whyItMatters:
+      "The BE-7 is the only high-performance cryogenic engine purpose-built for lunar landing. A successful full-duration hot-fire confirms the engine can sustain the thrust profile needed for Blue Moon's descent, keeping Blue Origin on track as the second HLS provider and NASA's hedge against single-provider risk for Artemis V and beyond.",
+    operationalCategory: "program-development",
     createdAt: TS,
     updatedAt: TS,
   },

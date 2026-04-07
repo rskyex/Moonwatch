@@ -22,4 +22,11 @@ export interface Milestone {
   sources: SourceRef[];
   createdAt: string; // ISO 8601
   updatedAt: string; // ISO 8601
+
+  /** Editorial: what this milestone means for the broader program */
+  whyItMatters?: string;
+  /** Horizon: recent | upcoming | long-term */
+  horizon?: string;
+  /** Thematic grouping: artemis-program | chang-e-program | commercial-lunar | international-cooperation | infrastructure */
+  thematicGroup?: string;
 }

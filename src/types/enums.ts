@@ -46,6 +46,11 @@ export const InfrastructureType = {
   PowerSystem: "power-system",
   LaunchVehicle: "launch-vehicle",
   GatewayModule: "gateway-module",
+  Communications: "communications",
+  Navigation: "navigation",
+  ISRU: "isru",
+  Logistics: "logistics",
+  SurfaceMobility: "surface-mobility",
   Other: "other",
 } as const;
 export type InfrastructureType =

@@ -10,7 +10,7 @@ export default function MethodologyPage() {
   const sources = getAllSources();
 
   return (
-    <>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <PageHeader
         title="Methodology"
         description="How Moonwatch sources, verifies, and curates lunar exploration data."
@@ -162,6 +162,6 @@ export default function MethodologyPage() {
           </p>
         </div>
       </section>
-    </>
+    </div>
   );
 }

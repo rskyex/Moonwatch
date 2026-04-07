@@ -25,4 +25,9 @@ export interface Update {
   sources: SourceRef[];
   createdAt: string; // ISO 8601
   updatedAt: string; // ISO 8601
+
+  /** Editorial: why this development matters in context */
+  whyItMatters?: string;
+  /** Operational category for Activity grouping */
+  operationalCategory?: string;
 }

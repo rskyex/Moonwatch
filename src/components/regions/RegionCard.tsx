@@ -4,9 +4,10 @@ import { Card } from "@/components/shared";
 interface RegionCardProps {
   region: LunarRegion;
   missionCount?: number;
+  snippet?: string;
 }
 
-export default function RegionCard({ region, missionCount }: RegionCardProps) {
+export default function RegionCard({ region, missionCount, snippet }: RegionCardProps) {
   return (
     <Card href={`/regions/${region.slug}`}>
       <h3 className="text-base font-semibold text-foreground">
@@ -19,7 +20,13 @@ export default function RegionCard({ region, missionCount }: RegionCardProps) {
         </p>
       )}
 
-      {region.significance && (
+      {snippet && (
+        <p className="mt-3 text-sm text-muted line-clamp-2">
+          {snippet}
+        </p>
+      )}
+
+      {!snippet && region.significance && (
         <p className="mt-3 text-sm text-muted line-clamp-2">
           {region.significance}
         </p>

@@ -25,6 +25,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "SLS is the only operational super-heavy-lift vehicle purpose-built for deep space crew transport, making it the backbone of the Artemis architecture. Without it, NASA has no independently certified pathway to send astronauts beyond low Earth orbit. Its continued flight cadence directly determines the pace of crewed lunar exploration.",
+    category: "logistics",
+    maturity: "flight-proven",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -46,6 +50,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "Starship HLS introduces the first fully reusable crewed lunar lander, with cargo capacity an order of magnitude greater than Apollo's LM. Its reliance on orbital refueling is a technical first that, if proven, unlocks routine heavy-payload delivery to the lunar surface. Success here reshapes the economics of sustained lunar presence.",
+    category: "landing-systems",
+    maturity: "prototype",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -67,6 +75,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "Gateway provides the first permanent human outpost in deep space, serving as a reusable staging platform that decouples crew transport from surface access. It enables mission flexibility by allowing landers to be pre-positioned and reused across missions. As a multinational facility, it also anchors international cooperation in cislunar space for decades to come.",
+    category: "orbital",
+    maturity: "prototype",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -88,6 +100,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "Blue Moon provides competitive redundancy in the crewed lunar lander market, ensuring NASA is not dependent on a single provider for surface access. Its hydrogen-oxygen propulsion architecture is compatible with future ISRU-produced propellants, potentially enabling lunar-sourced refueling. A second proven lander also doubles the mission cadence the program can sustain.",
+    category: "landing-systems",
+    maturity: "prototype",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -109,6 +125,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "Nova-C proved that a private company can deliver payloads to the lunar surface on a commercial contract, validating the CLPS model of buying lunar delivery as a service. Frequent, low-cost robotic deliveries are essential for pre-positioning instruments and supplies before crewed missions arrive. Each successful flight lowers the risk premium for commercial lunar logistics.",
+    category: "landing-systems",
+    maturity: "flight-proven",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -130,6 +150,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "HAKUTO-R represents the first commercially funded Japanese lunar lander, expanding the geography of the commercial space economy beyond the US. Its lightweight rideshare-compatible design targets a price point accessible to universities and small agencies. A successful Mission 2 would validate the learn-from-failure iteration model that commercial lunar ventures depend on.",
+    category: "landing-systems",
+    maturity: "prototype",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -151,6 +175,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "Peregrine's failure underscored the inherent risk in commercial lunar delivery but also the value of NASA's multi-vendor CLPS strategy — no single failure halts the program. Astrobotic's larger Griffin lander is designed to carry NASA's VIPER-class payloads, so lessons from Peregrine directly inform a heavier-class delivery capability. Resilience through iteration is central to making lunar logistics routine.",
+    category: "landing-systems",
+    maturity: "prototype",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -172,6 +200,10 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "Continuous communication is a hard prerequisite for crewed surface operations and autonomous rover navigation — without it, far-side and polar missions face dangerous blackout periods. A relay network also enables high-bandwidth science data return, multiplying the value of every surface instrument. It is the single most enabling piece of shared infrastructure for the entire lunar ecosystem.",
+    category: "communications",
+    maturity: "conceptual",
     createdAt: TS,
     updatedAt: TS,
   },
@@ -194,6 +226,141 @@ export const infrastructure: InfrastructureProject[] = [
         accessedAt: "2026-01-10T00:00:00Z",
       },
     ],
+    whyItMatters:
+      "VIPER's cancellation left a critical gap in ground-truth knowledge about the distribution and accessibility of lunar water ice — data that every ISRU business case depends on. Its instruments and mission design remain the reference architecture for future prospecting rovers. The program's cost overrun also prompted NASA to rethink how it manages mid-scale robotic missions.",
+    category: "mobility",
+    maturity: "flight-proven",
+    createdAt: TS,
+    updatedAt: TS,
+  },
+
+  // -----------------------------------------------------------------------
+  // New entries — expanding the infrastructure taxonomy
+  // -----------------------------------------------------------------------
+  {
+    id: "lunar-comms-relay",
+    slug: "lunar-comms-relay",
+    name: "Lunar Communications Relay",
+    type: "communications",
+    status: "concept",
+    description:
+      "A dedicated relay satellite constellation for continuous Earth-Moon communication, designed to eliminate coverage gaps for far-side and polar surface operations. Architectures under study range from ESA's Moonlight programme to commercial offerings by Intuitive Machines and other providers. The system would support voice, telemetry, and high-rate science data for crewed and robotic missions alike.",
+    entityIds: ["esa", "intuitive-machines", "nasa"],
+    missionIds: [],
+    tags: ["communications", "relay", "constellation", "moonlight", "far-side"],
+    sources: [
+      {
+        sourceId: "spacenews",
+        url: "https://spacenews.com/esa-moonlight-lunar-comms/",
+        accessedAt: "2026-01-10T00:00:00Z",
+      },
+    ],
+    whyItMatters:
+      "Without dedicated comms relay, every far-side and polar mission operates in periodic blackout — unacceptable for crew safety and a severe constraint on science return. A shared constellation amortises cost across all missions, lowering the barrier to entry for smaller agencies and commercial operators. This is foundational utility infrastructure, analogous to undersea cables on Earth.",
+    category: "communications",
+    maturity: "conceptual",
+    createdAt: TS,
+    updatedAt: TS,
+  },
+  {
+    id: "lunar-nav-network",
+    slug: "lunar-nav-network",
+    name: "Lunar Surface Navigation Network",
+    type: "navigation",
+    status: "concept",
+    description:
+      "A proposed positioning system for lunar surface operations, providing GPS-like navigation signals to rovers, crew on EVA, and landers during terminal descent. Multiple architectures are under study, including beacon-based systems and cislunar satellite constellations. Precision surface navigation is a prerequisite for autonomous rover traverses and hazard-avoidance landing.",
+    entityIds: ["nasa", "esa"],
+    missionIds: [],
+    tags: ["navigation", "positioning", "autonomous-operations", "precision-landing"],
+    sources: [
+      {
+        sourceId: "nasa-artemis-blog",
+        url: "https://www.nasa.gov/lunar-nav-architecture/",
+        accessedAt: "2026-01-10T00:00:00Z",
+      },
+    ],
+    whyItMatters:
+      "Autonomous surface mobility — essential for ISRU hauling, site preparation, and crew safety — requires reliable absolute positioning that terrain-relative navigation alone cannot guarantee. A shared nav network turns the Moon from a place you land on into a place you can navigate across. It is also critical for precision landing, allowing multiple missions to land within metres of pre-positioned assets.",
+    category: "navigation",
+    maturity: "conceptual",
+    createdAt: TS,
+    updatedAt: TS,
+  },
+  {
+    id: "isru-demo-unit",
+    slug: "isru-demo-unit",
+    name: "ISRU Demonstration Unit",
+    type: "isru",
+    status: "in-development",
+    description:
+      "An in-situ resource utilization prototype designed to extract water ice from lunar regolith and demonstrate conversion into usable oxygen and hydrogen. Several concepts are in parallel development, including NASA's OVEN/LITA experiments and commercial proposals. A successful demonstration would validate the technical and economic feasibility of local propellant production and life support consumables.",
+    entityIds: ["nasa"],
+    missionIds: [],
+    regionId: "shackleton-crater",
+    tags: ["isru", "water-ice", "propellant-production", "south-pole", "oxygen"],
+    sources: [
+      {
+        sourceId: "nasa-artemis-blog",
+        url: "https://www.nasa.gov/isru-demonstration/",
+        accessedAt: "2026-01-10T00:00:00Z",
+      },
+    ],
+    whyItMatters:
+      "ISRU is the single technology that transforms lunar exploration from a flags-and-footprints campaign into a self-sustaining presence. If water ice can be economically extracted and processed, it slashes the mass that must be launched from Earth for propellant and life support by orders of magnitude. Every long-term habitation and cislunar transportation plan assumes ISRU works — this demo is the proof point.",
+    category: "isru",
+    maturity: "prototype",
+    createdAt: TS,
+    updatedAt: TS,
+  },
+  {
+    id: "orion-spacecraft",
+    slug: "orion-spacecraft",
+    name: "Orion Spacecraft",
+    type: "other",
+    status: "operational",
+    description:
+      "NASA's Orion Multi-Purpose Crew Vehicle is the deep-space capsule that transports astronauts from Earth to cislunar space and back. Built by Lockheed Martin with ESA providing the European Service Module, Orion launched uncrewed on Artemis I in 2022 and carried crew on Artemis II. It is the command module for all Artemis crewed missions and is rated for up to 21 days of independent flight.",
+    entityIds: ["nasa", "esa"],
+    missionIds: ["artemis-ii", "artemis-iii"],
+    tags: ["orion", "crew-capsule", "artemis-program", "deep-space", "esm"],
+    sources: [
+      {
+        sourceId: "nasa-artemis-blog",
+        url: "https://www.nasa.gov/exploration/systems/orion/",
+        accessedAt: "2026-01-10T00:00:00Z",
+      },
+    ],
+    whyItMatters:
+      "Orion is the only crew-rated deep-space vehicle currently operational in the Western world, making it the irreplaceable link between Earth and the lunar vicinity. Its heat shield, designed for 40,000 km/h re-entry, represents a capability not fielded since Apollo. Paired with Gateway, Orion's reusability across missions keeps per-flight crew transport costs on a downward trajectory.",
+    category: "logistics",
+    maturity: "flight-proven",
+    createdAt: TS,
+    updatedAt: TS,
+  },
+  {
+    id: "lunar-surface-habitat",
+    slug: "lunar-surface-habitat",
+    name: "Lunar Surface Habitat (concept)",
+    type: "habitat",
+    status: "concept",
+    description:
+      "A pressurized living quarters concept for extended crew stays on the lunar surface, moving beyond EVA-only sortie missions to multi-week habitation. Design studies from NASA, ESA, and commercial partners explore rigid, inflatable, and hybrid shell architectures with integrated life support, radiation shielding, and dust mitigation. A surface habitat is a prerequisite for the transition from exploration to permanent presence.",
+    entityIds: ["nasa", "esa"],
+    missionIds: [],
+    regionId: "shackleton-crater",
+    tags: ["habitat", "surface-stay", "life-support", "radiation-shielding", "habitation"],
+    sources: [
+      {
+        sourceId: "nasa-artemis-blog",
+        url: "https://www.nasa.gov/lunar-surface-habitat/",
+        accessedAt: "2026-01-10T00:00:00Z",
+      },
+    ],
+    whyItMatters:
+      "Without a pressurized habitat, crew time on the surface is limited to what a lander cabin and EVA suits can support — typically days, not weeks. A dedicated habitat enables the science campaigns, ISRU operations, and construction activities that justify sustained investment in lunar infrastructure. It is the architectural tipping point between visiting the Moon and living there.",
+    category: "habitation",
+    maturity: "conceptual",
     createdAt: TS,
     updatedAt: TS,
   },

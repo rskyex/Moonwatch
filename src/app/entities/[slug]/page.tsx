@@ -33,11 +33,13 @@ export default async function EntityPage({ params }: EntityPageProps) {
   const updates = getUpdatesByEntity(entity.id);
 
   return (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <EntityDetail
       entity={entity}
       missions={missions}
       infrastructure={infrastructure}
       updates={updates}
     />
+    </div>
   );
 }

@@ -8,6 +8,25 @@ import {
 } from "@/lib/formatting";
 import { StatusBadge, TagChip } from "@/components/shared";
 
+const CATEGORY_LABELS: Record<string, string> = {
+  "landing-systems": "Landing Systems",
+  orbital: "Orbital Infrastructure",
+  logistics: "Logistics & Transport",
+  mobility: "Surface Mobility",
+  communications: "Communications",
+  navigation: "Navigation",
+  habitation: "Habitation",
+  power: "Power Systems",
+  isru: "In-Situ Resource Utilization",
+};
+
+const MATURITY_LABELS: Record<string, string> = {
+  conceptual: "Conceptual",
+  prototype: "Prototype",
+  "flight-proven": "Flight-Proven",
+  "operational-heritage": "Operational Heritage",
+};
+
 interface InfrastructureDetailProps {
   project: InfrastructureProject;
   entities: Entity[];
@@ -39,7 +58,7 @@ export default function InfrastructureDetail({
       {/* Description */}
       {project.description && (
         <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
             Description
           </h2>
           <p className="text-sm text-muted leading-relaxed max-w-2xl">
@@ -48,11 +67,54 @@ export default function InfrastructureDetail({
         </section>
       )}
 
+      {/* Why It Matters */}
+      {project.whyItMatters && (
+        <section className="mb-8">
+          <div className="border border-border rounded-lg bg-accent-soft/30 p-5">
+            <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-3">
+              Why it matters
+            </h2>
+            <p className="text-sm text-foreground leading-relaxed">
+              {project.whyItMatters}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* Technical Profile */}
+      <section className="border-t border-border pt-8 mt-8">
+        <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+          Technical Profile
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div>
+            <p className="text-[10px] font-medium tracking-wide uppercase text-muted mb-1">Type</p>
+            <p className="text-sm text-foreground">{getInfrastructureTypeLabel(project.type)}</p>
+          </div>
+          <div>
+            <p className="text-[10px] font-medium tracking-wide uppercase text-muted mb-1">Status</p>
+            <StatusBadge label={project.status} colorClass={getProjectStatusColor(project.status)} />
+          </div>
+          <div>
+            <p className="text-[10px] font-medium tracking-wide uppercase text-muted mb-1">Category</p>
+            <p className="text-sm text-foreground">
+              {project.category ? (CATEGORY_LABELS[project.category] ?? project.category) : "—"}
+            </p>
+          </div>
+          <div>
+            <p className="text-[10px] font-medium tracking-wide uppercase text-muted mb-1">Maturity</p>
+            <p className="text-sm text-foreground">
+              {project.maturity ? (MATURITY_LABELS[project.maturity] ?? project.maturity) : "—"}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Entities */}
       {entities.length > 0 && (
-        <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
-            Entities
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Related Entities
           </h2>
           <ul className="space-y-1.5">
             {entities.map((entity) => (
@@ -71,9 +133,9 @@ export default function InfrastructureDetail({
 
       {/* Missions */}
       {missions.length > 0 && (
-        <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
-            Missions
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Related Missions
           </h2>
           <ul className="space-y-2">
             {missions.map((mission) => (
@@ -96,8 +158,8 @@ export default function InfrastructureDetail({
 
       {/* Region */}
       {region && (
-        <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
             Region
           </h2>
           <Link
@@ -116,8 +178,8 @@ export default function InfrastructureDetail({
 
       {/* Tags */}
       {project.tags.length > 0 && (
-        <section>
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
             Tags
           </h2>
           <div className="flex flex-wrap gap-1.5">
@@ -125,6 +187,36 @@ export default function InfrastructureDetail({
               <TagChip key={tag} label={tag} />
             ))}
           </div>
+        </section>
+      )}
+
+      {/* Source Trail */}
+      {project.sources.length > 0 && (
+        <section className="border-t border-border pt-8 mt-8">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
+            Source Trail
+          </h2>
+          <ul className="space-y-2">
+            {project.sources.map((source, idx) => (
+              <li key={`${source.sourceId}-${idx}`} className="text-sm">
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline break-all"
+                >
+                  {source.url}
+                </a>
+                <span className="ml-2 text-xs text-muted">
+                  accessed {new Date(source.accessedAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </span>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </article>

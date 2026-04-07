@@ -23,4 +23,13 @@ export interface LunarRegion {
   sources: SourceRef[];
   createdAt: string; // ISO 8601
   updatedAt: string; // ISO 8601
+
+  /** Scientific interest: what makes this region valuable for research */
+  scientificInterest?: string;
+  /** Strategic interest: resource potential, base siting, etc. */
+  strategicInterest?: string;
+  /** Known or theorized resources */
+  resources?: string[];
+  /** Terrain characteristics */
+  terrain?: string;
 }
