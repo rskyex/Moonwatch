@@ -8,6 +8,8 @@ import {
   getMissionUpdates,
 } from "@/lib/relations";
 import { MissionDetail } from "@/components/missions";
+import { getRelatedMissions } from "@/lib/intelligence";
+import RelatedContent, { missionsToRelatedItems } from "@/components/shared/RelatedContent";
 
 export async function generateMetadata({
   params,
@@ -38,6 +40,7 @@ export default async function MissionSlugPage({
   const infrastructure = getMissionInfrastructure(mission);
   const milestones = getMissionMilestones(mission.id);
   const updates = getMissionUpdates(mission.id);
+  const relatedMissions = getRelatedMissions(mission);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -48,6 +51,10 @@ export default async function MissionSlugPage({
         infrastructure={infrastructure}
         milestones={milestones}
         region={region}
+      />
+      <RelatedContent
+        title="Related Missions"
+        items={missionsToRelatedItems(relatedMissions)}
       />
     </div>
   );

@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getRegionBySlug } from "@/lib/data-access";
 import { getRegionMissions } from "@/lib/relations";
 import RegionDetail from "@/components/regions/RegionDetail";
+import { getRegionInfrastructure, getRegionMilestones } from "@/lib/intelligence";
+import RelatedContent, { infrastructureToRelatedItems } from "@/components/shared/RelatedContent";
 
 interface RegionPageProps {
   params: Promise<{ slug: string }>;
@@ -26,10 +28,15 @@ export default async function RegionPage({ params }: RegionPageProps) {
   }
 
   const missions = getRegionMissions(region.id);
+  const regionInfra = getRegionInfrastructure(region.id);
+  const regionMilestones = getRegionMilestones(region.id);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <RegionDetail region={region} missions={missions} />
+      {regionInfra.length > 0 && (
+        <RelatedContent title="Infrastructure in This Region" items={infrastructureToRelatedItems(regionInfra)} />
+      )}
     </div>
   );
 }

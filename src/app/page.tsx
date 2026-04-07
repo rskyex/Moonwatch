@@ -4,9 +4,12 @@ import type { Entity, Mission } from "@/types";
 import HeroSection from "@/components/overview/HeroSection";
 import StatsBar from "@/components/overview/StatsBar";
 import SectionHeading from "@/components/shared/SectionHeading";
-import MissionCard from "@/components/missions/MissionCard";
 import UpdateCard from "@/components/activity/UpdateCard";
 import MilestoneCard from "@/components/timeline/MilestoneCard";
+import MissionStatusOverview from "@/components/overview/MissionStatusOverview";
+import EcosystemOverview from "@/components/overview/EcosystemOverview";
+import InfrastructureLayers from "@/components/overview/InfrastructureLayers";
+import RegionActivityMap from "@/components/overview/RegionActivityMap";
 
 import {
   getActiveMissionCount,
@@ -14,11 +17,16 @@ import {
   getAllEntities,
   getAllSources,
   getRecentUpdates,
-  getFeaturedMissions,
   getUpcomingMilestones,
   getSourceById,
 } from "@/lib/data-access";
-import { getMissionEntities } from "@/lib/relations";
+
+import {
+  getMissionsByStatusGroups,
+  getInfrastructureByLayers,
+  getActorEcosystem,
+  getRegionActivityOverview,
+} from "@/lib/intelligence";
 
 export const metadata: Metadata = {
   title: "Moonwatch",
@@ -67,9 +75,13 @@ export default function HomePage() {
 
   const activeMissionCount = getActiveMissionCount();
   const upcomingMilestones = getUpcomingMilestones();
-  const recentUpdates = getRecentUpdates(5);
-  const featuredMissions = getFeaturedMissions(6);
+  const recentUpdates = getRecentUpdates(4);
   const displayedMilestones = upcomingMilestones.slice(0, 5);
+
+  const missionStatusGroups = getMissionsByStatusGroups();
+  const actors = getActorEcosystem();
+  const infrastructureLayers = getInfrastructureByLayers();
+  const regions = getRegionActivityOverview();
 
   const stats = [
     { label: "Active Missions", value: activeMissionCount },
@@ -84,12 +96,20 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Stats */}
-      <section className="mb-12">
+      <section className="mb-14">
         <StatsBar stats={stats} />
       </section>
 
+      {/* Mission Status Overview */}
+      <section className="mb-14">
+        <SectionHeading title="Mission Status" />
+        <div className="mt-4">
+          <MissionStatusOverview groups={missionStatusGroups} />
+        </div>
+      </section>
+
       {/* Recent Activity */}
-      <section className="mb-12">
+      <section className="mb-14">
         <SectionHeading title="Recent Activity" viewAllHref="/activity" />
         <div className="mt-4 flex flex-col gap-4">
           {recentUpdates.map((update) => {
@@ -107,25 +127,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Missions */}
-      <section className="mb-12">
-        <SectionHeading title="Featured Missions" viewAllHref="/missions" />
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {featuredMissions.map((mission) => {
-            const entities = getMissionEntities(mission);
-            return (
-              <MissionCard
-                key={mission.id}
-                mission={mission}
-                entities={entities}
-              />
-            );
-          })}
+      {/* Actor Ecosystem */}
+      <section className="mb-14">
+        <SectionHeading title="Actor Ecosystem" viewAllHref="/entities" />
+        <div className="mt-4">
+          <EcosystemOverview actors={actors} />
+        </div>
+      </section>
+
+      {/* Infrastructure Layers */}
+      <section className="mb-14">
+        <SectionHeading title="Infrastructure by Layer" viewAllHref="/infrastructure" />
+        <div className="mt-4">
+          <InfrastructureLayers layers={infrastructureLayers} />
+        </div>
+      </section>
+
+      {/* Region Activity */}
+      <section className="mb-14">
+        <SectionHeading title="Lunar Regions" viewAllHref="/regions" />
+        <div className="mt-4">
+          <RegionActivityMap regions={regions} />
         </div>
       </section>
 
       {/* Upcoming Milestones */}
-      <section className="mb-12">
+      <section className="mb-14">
         <SectionHeading title="Upcoming Milestones" viewAllHref="/timeline" />
         <div className="mt-4">
           {displayedMilestones.map((milestone) => (

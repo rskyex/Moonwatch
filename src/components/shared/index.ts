@@ -5,3 +5,4 @@ export { default as SectionHeading } from "./SectionHeading";
 export { default as EmptyState } from "./EmptyState";
 export { default as FilterBar } from "./FilterBar";
 export { default as Card } from "./Card";
+export { default as RelatedContent, missionsToRelatedItems, entitiesToRelatedItems, infrastructureToRelatedItems } from "./RelatedContent";

@@ -9,6 +9,8 @@ import {
   getInfrastructureMissions,
 } from "@/lib/relations";
 import InfrastructureDetail from "@/components/infrastructure/InfrastructureDetail";
+import { getRelatedInfrastructure } from "@/lib/intelligence";
+import RelatedContent, { infrastructureToRelatedItems } from "@/components/shared/RelatedContent";
 
 interface InfrastructurePageProps {
   params: Promise<{ slug: string }>;
@@ -38,15 +40,17 @@ export default async function InfrastructurePage({
   const region = project.regionId
     ? getAllRegions().find((r) => r.id === project.regionId)
     : undefined;
+  const related = getRelatedInfrastructure(project);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <InfrastructureDetail
-      project={project}
-      entities={entities}
-      missions={missions}
-      region={region}
-    />
+      <InfrastructureDetail
+        project={project}
+        entities={entities}
+        missions={missions}
+        region={region}
+      />
+      <RelatedContent title="Related Systems" items={infrastructureToRelatedItems(related)} />
     </div>
   );
 }

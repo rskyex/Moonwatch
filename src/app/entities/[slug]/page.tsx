@@ -6,6 +6,8 @@ import {
   getEntityInfrastructure,
 } from "@/lib/relations";
 import EntityDetail from "@/components/entities/EntityDetail";
+import { getEntityPartners } from "@/lib/intelligence";
+import RelatedContent, { entitiesToRelatedItems } from "@/components/shared/RelatedContent";
 
 interface EntityPageProps {
   params: Promise<{ slug: string }>;
@@ -31,15 +33,17 @@ export default async function EntityPage({ params }: EntityPageProps) {
   const missions = getEntityMissions(entity.id);
   const infrastructure = getEntityInfrastructure(entity.id);
   const updates = getUpdatesByEntity(entity.id);
+  const partners = getEntityPartners(entity.id);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <EntityDetail
-      entity={entity}
-      missions={missions}
-      infrastructure={infrastructure}
-      updates={updates}
-    />
+      <EntityDetail
+        entity={entity}
+        missions={missions}
+        infrastructure={infrastructure}
+        updates={updates}
+      />
+      <RelatedContent title="Collaborating Entities" items={entitiesToRelatedItems(partners)} />
     </div>
   );
 }
