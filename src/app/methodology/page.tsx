@@ -18,7 +18,7 @@ export default function MethodologyPage() {
 
       {/* Data Sources */}
       <section>
-        <h2 className="text-xl font-semibold text-foreground mb-4">
+        <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
           Data Sources
         </h2>
         <div className="overflow-x-auto">
@@ -76,7 +76,7 @@ export default function MethodologyPage() {
 
       {/* Curation Standards */}
       <section className="border-t border-border pt-8">
-        <h2 className="text-xl font-semibold text-foreground mb-4">
+        <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
           Curation Standards
         </h2>
         <div className="prose prose-sm max-w-none text-muted-foreground space-y-4">
@@ -136,7 +136,7 @@ export default function MethodologyPage() {
 
       {/* Data Model Transparency */}
       <section className="border-t border-border pt-8">
-        <h2 className="text-xl font-semibold text-foreground mb-4">
+        <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
           Data Model Transparency
         </h2>
         <div className="prose prose-sm max-w-none text-muted-foreground">
@@ -150,7 +150,7 @@ export default function MethodologyPage() {
 
       {/* Future Integration */}
       <section className="border-t border-border pt-8">
-        <h2 className="text-xl font-semibold text-foreground mb-4">
+        <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
           Future Integration
         </h2>
         <div className="prose prose-sm max-w-none text-muted-foreground">

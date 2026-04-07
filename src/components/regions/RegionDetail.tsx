@@ -26,7 +26,7 @@ export default function RegionDetail({ region, missions }: RegionDetailProps) {
       {/* Description */}
       {region.description && (
         <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
             Description
           </h2>
           <p className="text-sm text-muted leading-relaxed max-w-2xl">
@@ -38,7 +38,7 @@ export default function RegionDetail({ region, missions }: RegionDetailProps) {
       {/* Significance */}
       {region.significance && (
         <section className="mb-8">
-          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
+          <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted mb-4">
             Significance
           </h2>
           <p className="text-sm text-muted leading-relaxed max-w-2xl">

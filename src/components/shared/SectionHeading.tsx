@@ -13,7 +13,7 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className="flex items-center justify-between">
-      <h2 className="text-sm font-semibold tracking-[0.1em] uppercase text-muted">
+      <h2 className="text-xs font-medium tracking-[0.15em] uppercase text-muted">
         {title}
       </h2>
       {viewAllHref && (

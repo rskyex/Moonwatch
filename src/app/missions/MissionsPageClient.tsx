@@ -212,9 +212,9 @@ export default function MissionsPageClient({
         <div className="mt-6 space-y-10">
           {Array.from(grouped.entries()).map(([heading, group]) => (
             <section key={heading}>
-              <h2 className="mb-4 text-lg font-semibold text-foreground">
+              <h2 className="mb-4 text-xs font-medium tracking-[0.15em] uppercase text-muted flex items-center gap-2">
                 {heading}
-                <span className="ml-2 text-sm font-normal text-muted-foreground">
+                <span className="text-[10px] font-normal text-muted/60 tabular-nums">
                   ({group.length})
                 </span>
               </h2>

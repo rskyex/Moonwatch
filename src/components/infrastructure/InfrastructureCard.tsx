@@ -68,7 +68,7 @@ export default function InfrastructureCard({ project, entityNames }: Infrastruct
 
       {project.tags.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
+          {project.tags.slice(0, 3).map((tag) => (
             <TagChip key={tag} label={tag} />
           ))}
         </div>
