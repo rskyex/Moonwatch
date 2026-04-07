@@ -202,3 +202,37 @@ export function getAllSources(): Source[] {
 export function getSourceById(id: string): Source | undefined {
   return sources.find((s) => s.id === id);
 }
+
+// ---------------------------------------------------------------------------
+// Ingested Updates (merged with curated data)
+// ---------------------------------------------------------------------------
+// The data-access layer can merge manually curated updates with
+// ingested external updates. This is done lazily — ingestion runs
+// are triggered explicitly, and results are merged at query time.
+// ---------------------------------------------------------------------------
+
+let _ingestedUpdates: Update[] = [];
+
+/**
+ * Register ingested updates from the ingestion pipeline.
+ * These are merged with curated data when queried.
+ */
+export function registerIngestedUpdates(ingested: Update[]): void {
+  _ingestedUpdates = ingested;
+}
+
+/**
+ * Get all updates including both curated and ingested.
+ * Curated entries take priority (appear first if same date).
+ */
+export function getAllUpdatesWithIngested(): Update[] {
+  const { mergeWithExisting } = require("@/lib/ingestion") as typeof import("@/lib/ingestion");
+  return mergeWithExisting(updates, _ingestedUpdates);
+}
+
+/**
+ * Clear ingested updates (useful for testing).
+ */
+export function clearIngestedUpdates(): void {
+  _ingestedUpdates = [];
+}

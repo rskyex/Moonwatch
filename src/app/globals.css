@@ -9,31 +9,43 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-glow: var(--glow);
+  --color-horizon: var(--horizon);
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 }
 
+/* -----------------------------------------------------------------------
+   Moonwatch — Dark-first palette
+   A quiet observatory at the edge of the frontier.
+   Warm stone tones with controlled luminance.
+   ----------------------------------------------------------------------- */
+
 :root {
-  --background: #fafaf9;
-  --foreground: #1c1917;
-  --surface: #ffffff;
-  --surface-alt: #f5f5f4;
-  --border-color: #e7e5e4;
-  --muted: #78716c;
-  --accent: #3b82f6;
-  --accent-soft: #dbeafe;
+  --background: #0c0a09;
+  --foreground: #e7e5e4;
+  --surface: #1c1917;
+  --surface-alt: #292524;
+  --border-color: #3a3633;
+  --muted: #a8a29e;
+  --accent: #93c5fd;
+  --accent-soft: #1e293b;
+  --glow: rgba(147, 197, 253, 0.08);
+  --horizon: rgba(147, 197, 253, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0c0a09;
-    --foreground: #e7e5e4;
-    --surface: #1c1917;
-    --surface-alt: #292524;
-    --border-color: #44403c;
-    --muted: #a8a29e;
-    --accent: #60a5fa;
-    --accent-soft: #1e3a5f;
+    --background: #faf9f7;
+    --foreground: #1c1917;
+    --surface: #ffffff;
+    --surface-alt: #f5f4f2;
+    --border-color: #e2e0dc;
+    --muted: #78716c;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --glow: rgba(37, 99, 235, 0.06);
+    --horizon: rgba(37, 99, 235, 0.03);
   }
 }
 
@@ -45,7 +57,7 @@ body {
 
 /* Refined scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -58,4 +70,10 @@ body {
 /* Smooth transitions */
 * {
   scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent-soft);
+  color: var(--foreground);
 }

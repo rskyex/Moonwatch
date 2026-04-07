@@ -17,10 +17,15 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
   const entityNames = entities
     ?.slice(0, 2)
     .map((e) => e.shortName ?? e.name)
-    .join(", ");
+    .join(" · ");
 
   return (
     <Card href={`/missions/${mission.slug}`}>
+      {/* Mission type — small eyebrow */}
+      <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-muted/60 mb-2">
+        {mission.type.replace("-", " ")}
+      </p>
+
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-base font-semibold text-foreground leading-snug">
           {mission.name}
@@ -28,17 +33,15 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
         <StatusBadge label={statusLabel} colorClass={statusColor} />
       </div>
 
-      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
-        <span className="capitalize">{mission.type.replace("-", " ")}</span>
+      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
         {mission.launchDate && (
-          <>
-            <span aria-hidden="true">&middot;</span>
-            <span>{formatDate(mission.launchDate)}</span>
-          </>
+          <time dateTime={mission.launchDate} className="tabular-nums">
+            {formatDate(mission.launchDate)}
+          </time>
         )}
         {entityNames && (
           <>
-            <span aria-hidden="true">&middot;</span>
+            {mission.launchDate && <span aria-hidden="true">&middot;</span>}
             <span>{entityNames}</span>
           </>
         )}

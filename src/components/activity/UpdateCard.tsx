@@ -21,49 +21,61 @@ export default function UpdateCard({
 }: UpdateCardProps) {
   return (
     <Card>
-      <div className="flex items-start gap-3">
-        <StatusBadge
-          label={getSignificanceLabel(update.significance)}
-          colorClass={getSignificanceColor(update.significance)}
-        />
+      <div className="flex items-start gap-4">
+        {/* Significance indicator — vertical accent bar */}
+        <div className="flex flex-col items-center pt-1">
+          <div
+            className={`w-1.5 h-1.5 rounded-full ${getSignificanceColor(update.significance).split(" ")[0].replace("text-", "bg-")}`}
+          />
+          <div className="w-px h-full bg-border mt-1.5" />
+        </div>
+
         <div className="min-w-0 flex-1">
+          {/* Header row */}
+          <div className="flex items-center gap-2 mb-2">
+            <StatusBadge
+              label={getSignificanceLabel(update.significance)}
+              colorClass={getSignificanceColor(update.significance)}
+            />
+            <time dateTime={update.date} className="text-[11px] text-muted/70 tabular-nums">
+              {formatDate(update.date)}
+            </time>
+          </div>
+
+          {/* Title */}
           <h3 className="text-sm font-semibold text-foreground leading-snug">
             {update.title}
           </h3>
-          <p className="mt-1.5 text-sm text-muted line-clamp-3 leading-relaxed">
+
+          {/* Summary */}
+          <p className="mt-2 text-sm text-muted line-clamp-2 leading-relaxed">
             {update.summary}
           </p>
 
-          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
-            <time dateTime={update.date}>{formatDate(update.date)}</time>
+          {/* Associations + source */}
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {missionNames?.map((name) => (
+              <span
+                key={name}
+                className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium bg-accent-soft text-accent border border-accent/10"
+              >
+                {name}
+              </span>
+            ))}
+            {entityNames?.map((name) => (
+              <span
+                key={name}
+                className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] text-muted bg-surface-alt border border-border"
+              >
+                {name}
+              </span>
+            ))}
             {sourceName && (
-              <>
-                <span aria-hidden="true">&middot;</span>
-                <span>{sourceName}</span>
-              </>
+              <span className="text-[10px] text-muted/50 ml-auto">
+                via {sourceName}
+              </span>
             )}
           </div>
-
-          {(missionNames?.length || entityNames?.length) && (
-            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
-              {missionNames?.map((name) => (
-                <span
-                  key={name}
-                  className="inline-flex items-center rounded bg-accent-soft px-1.5 py-0.5 text-accent"
-                >
-                  {name}
-                </span>
-              ))}
-              {entityNames?.map((name) => (
-                <span
-                  key={name}
-                  className="inline-flex items-center rounded bg-surface-alt px-1.5 py-0.5"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </Card>

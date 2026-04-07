@@ -10,20 +10,24 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="border-b border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-50">
+    <header className="border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="text-lg font-semibold tracking-tight">
+          <Link href="/" className="flex items-center gap-3 group">
+            {/* Glyph mark */}
+            <span className="flex items-center justify-center w-6 h-6 rounded-full border border-accent/30 bg-accent/5 group-hover:bg-accent/10 transition-colors">
+              <span className="block w-1.5 h-1.5 rounded-full bg-accent" />
+            </span>
+            <span className="text-sm font-semibold tracking-tight">
               {siteConfig.siteName}
             </span>
-            <span className="hidden sm:inline text-xs text-muted font-medium tracking-wide uppercase">
-              Lunar Observatory
+            <span className="hidden lg:inline text-[10px] text-muted/60 font-medium tracking-[0.15em] uppercase">
+              Observatory
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-0.5">
             {navigation.map((item) => {
               const isActive =
                 item.href === "/"
@@ -33,10 +37,10 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+                  className={`px-3 py-1.5 text-[13px] rounded-md transition-colors ${
                     isActive
-                      ? "bg-foreground/5 text-foreground font-medium"
-                      : "text-muted hover:text-foreground hover:bg-foreground/5"
+                      ? "text-foreground font-medium bg-surface-alt"
+                      : "text-muted hover:text-foreground hover:bg-surface-alt/50"
                   }`}
                 >
                   {item.name}
@@ -48,7 +52,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-muted hover:text-foreground"
+            className="md:hidden p-2 text-muted hover:text-foreground transition-colors"
             aria-label="Toggle menu"
           >
             <svg
@@ -80,9 +84,9 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-3 py-2 text-sm rounded-md ${
+                  className={`block px-3 py-2 text-sm rounded-md transition-colors ${
                     isActive
-                      ? "bg-foreground/5 text-foreground font-medium"
+                      ? "bg-surface-alt text-foreground font-medium"
                       : "text-muted hover:text-foreground"
                   }`}
                 >

@@ -7,7 +7,7 @@ interface TagChipProps {
 
 export default function TagChip({ label, href }: TagChipProps) {
   const classes =
-    "inline-flex items-center rounded-full bg-surface-alt px-2.5 py-0.5 text-xs text-muted hover:text-foreground transition";
+    "inline-flex items-center rounded px-2 py-0.5 text-[11px] text-muted/80 bg-surface-alt border border-border/50 hover:text-foreground hover:border-border transition-colors";
 
   if (href) {
     return (
