@@ -5,15 +5,19 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import UpdateCard from "@/components/activity/UpdateCard";
 
 import {
-  getAllUpdates,
   getAllMissions,
   getAllEntities,
   getSourceById,
 } from "@/lib/data-access";
 
+import { getLiveUpdates } from "@/lib/live-data";
+
 export const metadata: Metadata = {
   title: "Activity — Moonwatch",
 };
+
+// Revalidate every hour — ISR for live RSS data
+export const revalidate = 3600;
 
 // ---------------------------------------------------------------------------
 // Category configuration
@@ -90,8 +94,8 @@ function groupByCategory(
 // Page
 // ---------------------------------------------------------------------------
 
-export default function ActivityPage() {
-  const allUpdates = getAllUpdates();
+export default async function ActivityPage() {
+  const allUpdates = await getLiveUpdates();
   const missionNameMap = buildMissionNameMap(getAllMissions());
   const entityNameMap = buildEntityNameMap(getAllEntities());
 
