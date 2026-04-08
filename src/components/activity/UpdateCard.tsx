@@ -20,43 +20,47 @@ export default function UpdateCard({
   const isCritical = update.significance === "critical" || update.significance === "major";
 
   return (
-    <article className="py-4 border-b border-border/50 last:border-0">
-      {/* Telemetry header */}
-      <div className="flex items-center gap-2 text-[9px] font-mono text-dim tracking-wider mb-2">
-        <time dateTime={update.date} className="tabular-nums text-muted">
+    <article className="py-5 border-b border-border/40 last:border-0 group">
+      {/* Meta line */}
+      <div className="flex items-center gap-2.5 text-[11px] text-dim mb-2">
+        <time dateTime={update.date} className="font-mono tabular-nums text-muted">
           {formatDate(update.date)}
         </time>
-        <span className="text-border">|</span>
-        <span className={`flex items-center gap-1 ${isCritical ? "text-cold/70" : ""}`}>
-          {isCritical && <span className="w-1 h-1 rounded-full bg-cold/50" />}
+        <span className="w-px h-3 bg-border" />
+        <span className={`flex items-center gap-1.5 ${isCritical ? "text-cold" : ""}`}>
+          {isCritical && <span className="w-1.5 h-1.5 rounded-full bg-cold/60" />}
           {getSignificanceLabel(update.significance)}
         </span>
         {sourceName && (
           <>
-            <span className="text-border">|</span>
+            <span className="w-px h-3 bg-border" />
             <span>{sourceName}</span>
           </>
         )}
       </div>
 
       {/* Title */}
-      <h3 className="text-[14px] font-sans font-light text-foreground leading-snug">
+      <h3 className="text-[15px] text-foreground leading-snug group-hover:text-cold transition-colors">
         {update.title}
       </h3>
 
       {/* Summary */}
-      <p className="mt-1.5 text-[12px] font-sans text-muted font-light leading-[1.7] line-clamp-2">
+      <p className="mt-2 text-[13px] text-muted leading-relaxed line-clamp-2">
         {update.summary}
       </p>
 
-      {/* Association tags */}
+      {/* Tags */}
       {(missionNames?.length || entityNames?.length) ? (
-        <div className="mt-2 flex flex-wrap items-center gap-x-2 text-[9px] font-mono tracking-wider text-dim">
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px]">
           {missionNames?.map((name) => (
-            <span key={name} className="text-cold/50">{name}</span>
+            <span key={name} className="px-2 py-0.5 rounded bg-cold/10 text-cold/80 border border-cold/15">
+              {name}
+            </span>
           ))}
           {entityNames?.map((name) => (
-            <span key={name}>{name}</span>
+            <span key={name} className="px-2 py-0.5 rounded bg-surface-alt text-muted border border-border">
+              {name}
+            </span>
           ))}
         </div>
       ) : null}

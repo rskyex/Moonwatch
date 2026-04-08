@@ -7,24 +7,15 @@ interface CardProps {
 }
 
 export default function Card({ children, href, className = "" }: CardProps) {
-  const baseClasses = `relative bg-surface border border-border rounded-sm p-4 transition-all duration-150 hover:border-cold/20 hover:bg-surface-alt ${className}`;
+  const baseClasses = `relative bg-surface backdrop-blur-lg border border-border rounded-lg p-5 transition-all duration-200 hover:border-cold/20 hover:shadow-[0_0_30px_rgba(34,211,238,0.04)] ${className}`;
 
   if (href) {
     return (
       <Link href={href} className={`block ${baseClasses}`}>
-        {/* Corner accents — instrument panel feel */}
-        <span className="absolute top-0 left-0 w-2 h-px bg-cold/20" />
-        <span className="absolute top-0 left-0 w-px h-2 bg-cold/20" />
         {children}
       </Link>
     );
   }
 
-  return (
-    <div className={baseClasses}>
-      <span className="absolute top-0 left-0 w-2 h-px bg-cold/20" />
-      <span className="absolute top-0 left-0 w-px h-2 bg-cold/20" />
-      {children}
-    </div>
-  );
+  return <div className={baseClasses}>{children}</div>;
 }

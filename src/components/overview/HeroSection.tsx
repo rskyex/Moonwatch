@@ -8,125 +8,93 @@ interface HeroSectionProps {
 
 export default function HeroSection({ lunarState, activeMissions, totalMissions }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center">
-      {/* Deep void atmospheric layers */}
+    <section className="relative min-h-[85vh] flex flex-col justify-center py-16">
+      {/* Background atmosphere */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        {/* Lunar body glow — large soft sphere in upper area */}
-        <div
-          className="absolute inset-0"
+        {/* Large lunar presence — soft orb */}
+        <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] rounded-full"
           style={{
-            background:
-              "radial-gradient(circle 40vw at 50% 30%, rgba(56,189,248,0.03) 0%, rgba(56,189,248,0.01) 40%, transparent 70%)",
-          }}
-        />
-        {/* Horizon line glow at bottom */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(56,189,248,0.04) 0%, transparent 15%)",
-          }}
-        />
-        {/* Grid — very faint mission grid */}
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--cold) 1px, transparent 1px), linear-gradient(90deg, var(--cold) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
+            background: "radial-gradient(circle, rgba(34,211,238,0.04) 0%, rgba(34,211,238,0.015) 40%, transparent 70%)",
+            filter: "blur(40px)",
           }}
         />
       </div>
 
       <div className="relative">
-        {/* System status */}
-        <div className="flex items-center gap-2 mb-10">
-          <span className="w-1.5 h-1.5 rounded-full bg-nominal animate-pulse" />
-          <span className="text-[9px] tracking-[0.5em] uppercase text-nominal/60 font-mono">
+        {/* System status line */}
+        <div className="flex items-center gap-2.5 mb-8">
+          <span className="w-2 h-2 rounded-full bg-nominal shadow-[0_0_8px_rgba(52,211,153,0.4)] animate-pulse" />
+          <span className="text-[11px] tracking-[0.3em] uppercase text-nominal/80 font-mono">
             Systems Nominal
+          </span>
+          <span className="ml-4 text-[10px] text-dim font-mono">
+            {new Date().toISOString().split("T")[0]}
           </span>
         </div>
 
-        {/* Title — monumental */}
-        <h1 className="text-6xl sm:text-8xl lg:text-[10rem] font-extralight tracking-[-0.05em] text-foreground leading-[0.85] font-sans">
-          MOON<span className="text-cold">WATCH</span>
+        {/* Title */}
+        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-light tracking-[-0.03em] leading-[0.9]">
+          <span className="text-foreground">MOON</span>
+          <span className="text-cold">WATCH</span>
         </h1>
+        <p className="mt-4 text-[15px] text-muted max-w-md leading-relaxed">
+          Lunar exploration observatory. Missions, infrastructure,
+          and milestones — sourced and structurally connected.
+        </p>
 
-        {/* ── Lunar Telemetry — the centerpiece ── */}
-        <div className="mt-12 sm:mt-16 p-6 sm:p-8 border border-cold/10 rounded-sm bg-surface/60 max-w-3xl">
-          {/* Header bar */}
-          <div className="flex items-center justify-between mb-6 pb-3 border-b border-border">
-            <div className="flex items-center gap-2">
-              <span className="w-1 h-3 bg-cold/30 rounded-[1px]" />
-              <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-cold/60">
+        {/* ── Telemetry Panel — translucent floating layer ── */}
+        <div className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-lg border border-border bg-surface backdrop-blur-xl max-w-4xl shadow-[0_0_40px_rgba(34,211,238,0.03)]">
+          {/* Panel header */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-4 rounded-full bg-cold/40" />
+              <span className="text-[11px] font-mono tracking-[0.2em] uppercase text-cold/80">
                 Lunar Telemetry
               </span>
             </div>
-            <span className="text-[8px] font-mono text-dim tracking-wider">
-              LIVE
-            </span>
-          </div>
-
-          {/* Primary readouts — big numbers */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mb-8">
-            <div>
-              <p className="text-[8px] font-mono tracking-[0.3em] uppercase text-cold/40 mb-1">
-                Earth-Moon Distance
-              </p>
-              <p className="text-2xl sm:text-3xl font-sans font-extralight text-foreground tabular-nums tracking-tight">
-                {lunarState.distance}
-              </p>
-            </div>
-            <div>
-              <p className="text-[8px] font-mono tracking-[0.3em] uppercase text-cold/40 mb-1">
-                Lunar Phase
-              </p>
-              <p className="text-2xl sm:text-3xl font-sans font-extralight text-cold/90 tracking-tight">
-                {lunarState.phaseName}
-              </p>
-            </div>
-            <div>
-              <p className="text-[8px] font-mono tracking-[0.3em] uppercase text-cold/40 mb-1">
-                Phase Angle
-              </p>
-              <p className="text-2xl sm:text-3xl font-sans font-extralight text-foreground tabular-nums tracking-tight">
-                {lunarState.phaseAngle}
-              </p>
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-cold/40 animate-pulse" />
+              <span className="text-[10px] font-mono text-cold/50">LIVE</span>
             </div>
           </div>
 
-          {/* Secondary readouts — smaller telemetry line */}
-          <div className="flex flex-wrap gap-x-6 gap-y-2 pt-4 border-t border-border/50">
-            <TelemetryValue label="Sub-Solar Lng" value={lunarState.subSolarLng} />
-            <TelemetryValue label="Libration Lat" value={lunarState.librationLat} />
-            <TelemetryValue label="Libration Lng" value={lunarState.librationLng} />
-            <span className="hidden sm:inline w-px h-4 bg-border self-center" />
-            <TelemetryValue label="Active Missions" value={String(activeMissions)} highlight />
-            <TelemetryValue label="Tracked" value={String(totalMissions)} />
+          {/* Primary readouts — large clear numbers */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
+            <TelemetryBlock label="Earth — Moon" value={lunarState.distance} />
+            <TelemetryBlock label="Phase" value={lunarState.phaseName} accent />
+            <TelemetryBlock label="Phase Angle" value={lunarState.phaseAngle} />
           </div>
-        </div>
 
-        {/* Tagline */}
-        <div className="mt-10 border-l border-dim/30 pl-4 max-w-md">
-          <p className="text-[12px] text-dim leading-[1.9]">
-            Lunar exploration observatory. Missions, infrastructure,
-            and milestones — sourced and structurally connected.
-          </p>
+          {/* Secondary readouts */}
+          <div className="mt-8 pt-6 border-t border-border/60 grid grid-cols-2 sm:grid-cols-5 gap-4">
+            <TelemetrySmall label="Sub-Solar" value={lunarState.subSolarLng} />
+            <TelemetrySmall label="Lib. Lat" value={lunarState.librationLat} />
+            <TelemetrySmall label="Lib. Lng" value={lunarState.librationLng} />
+            <TelemetrySmall label="Active" value={String(activeMissions)} highlight />
+            <TelemetrySmall label="Tracked" value={`${totalMissions} missions`} />
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function TelemetryValue({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
+function TelemetryBlock({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-[8px] font-mono tracking-[0.2em] uppercase text-dim">
-        {label}
-      </span>
-      <span className={`text-[12px] font-mono tabular-nums ${highlight ? "text-nominal" : "text-muted"}`}>
+    <div>
+      <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-dim mb-2">{label}</p>
+      <p className={`text-3xl sm:text-4xl font-light tracking-tight tabular-nums ${accent ? "text-cold" : "text-foreground"}`}>
         {value}
-      </span>
+      </p>
+    </div>
+  );
+}
+
+function TelemetrySmall({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
+  return (
+    <div>
+      <p className="text-[9px] font-mono tracking-[0.15em] uppercase text-dim/80 mb-0.5">{label}</p>
+      <p className={`text-sm font-mono tabular-nums ${highlight ? "text-nominal" : "text-foreground/80"}`}>{value}</p>
     </div>
   );
 }

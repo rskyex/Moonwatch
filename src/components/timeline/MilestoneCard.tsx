@@ -16,32 +16,29 @@ export default function MilestoneCard({
   const isUpcoming = milestone.status === "upcoming" || milestone.status === "delayed";
 
   return (
-    <div className={`flex gap-4 py-3 ${isAchieved ? "opacity-35" : ""}`}>
-      {/* Timestamp */}
-      <div className="w-20 shrink-0 text-right pt-0.5">
-        <span className="text-[10px] font-mono text-dim tabular-nums">
+    <div className={`flex gap-5 py-4 ${isAchieved ? "opacity-40" : ""}`}>
+      <div className="w-24 shrink-0 text-right pt-0.5">
+        <span className="text-[11px] font-mono text-dim tabular-nums">
           {formatDate(milestone.date, milestone.dateGranularity)}
         </span>
       </div>
 
-      {/* Status indicator */}
       <div className="flex flex-col items-center pt-1.5">
-        <span className={`w-1.5 h-1.5 rounded-full ${isUpcoming ? "bg-cold/60 animate-pulse" : "bg-dim/30"}`} />
-        <span className="w-px flex-1 bg-border/40 mt-1" />
+        <span className={`w-2 h-2 rounded-full ${isUpcoming ? "bg-cold shadow-[0_0_6px_rgba(34,211,238,0.4)] animate-pulse" : "bg-dim/40"}`} />
+        <span className="w-px flex-1 bg-border/40 mt-1.5" />
       </div>
 
-      {/* Readout */}
-      <div className="pb-5 min-w-0">
-        <h3 className="text-[13px] font-sans font-light text-foreground leading-snug">
+      <div className="pb-6 min-w-0">
+        <h3 className="text-[14px] text-foreground leading-snug">
           {milestone.title}
         </h3>
         {(missionNames?.length || entityNames?.length) ? (
-          <p className="mt-1 text-[9px] font-mono text-dim tracking-wider">
-            {[...(missionNames ?? []), ...(entityNames ?? [])].join(" | ")}
+          <p className="mt-1.5 text-[10px] text-dim">
+            {[...(missionNames ?? []), ...(entityNames ?? [])].join(" · ")}
           </p>
         ) : null}
         {milestone.description && (
-          <p className="mt-1.5 text-[12px] font-sans text-muted/60 font-light leading-relaxed line-clamp-2">
+          <p className="mt-2 text-[13px] text-muted leading-relaxed line-clamp-2">
             {milestone.description}
           </p>
         )}

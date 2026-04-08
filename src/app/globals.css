@@ -15,84 +15,93 @@
   --color-cold: var(--cold);
   --color-nominal: var(--nominal);
   --color-caution: var(--caution);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 /* -----------------------------------------------------------------------
-   Moonwatch — Deep Void Mission Console
+   Moonwatch — Ghost in the Shell aesthetic
 
-   Pure black void. The Moon is the only light source.
+   Deep ocean dark with luminous information layers.
+   Translucent panels floating over void.
+   High-contrast readable text. Teal/cyan data accents.
    ----------------------------------------------------------------------- */
 
 :root {
-  --background: #000001;
-  --foreground: #a0a0b0;
-  --surface: #060609;
-  --surface-alt: #0c0c12;
-  --border-color: #14141e;
-  --muted: #505060;
-  --dim: #30303c;
-  --accent: #505060;
-  --accent-soft: #0a0a12;
-  --cold: #38bdf8;
+  --background: #0a0e14;
+  --foreground: #d4dce8;
+  --surface: rgba(16, 22, 32, 0.7);
+  --surface-alt: rgba(22, 30, 44, 0.6);
+  --border-color: rgba(60, 80, 110, 0.25);
+  --muted: #7088a8;
+  --dim: #405068;
+  --accent: #7088a8;
+  --accent-soft: rgba(40, 80, 120, 0.15);
+  --cold: #22d3ee;
   --nominal: #34d399;
   --caution: #fbbf24;
-  --glow: rgba(56, 189, 248, 0.08);
-  --horizon: rgba(56, 189, 248, 0.04);
+  --glow: rgba(34, 211, 238, 0.08);
+  --horizon: rgba(34, 211, 238, 0.04);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #f8f8fa;
-    --foreground: #1a1a2e;
-    --surface: #ffffff;
-    --surface-alt: #f0f0f5;
-    --border-color: #dddde5;
-    --muted: #6a6a7a;
-    --dim: #9a9aaa;
-    --accent: #5a5a6a;
-    --accent-soft: #ededf5;
-    --cold: #0284c7;
+    --background: #f0f2f5;
+    --foreground: #0a0e14;
+    --surface: rgba(255, 255, 255, 0.85);
+    --surface-alt: rgba(240, 244, 248, 0.8);
+    --border-color: rgba(60, 80, 110, 0.15);
+    --muted: #506880;
+    --dim: #8098b0;
+    --accent: #506880;
+    --accent-soft: rgba(40, 80, 120, 0.08);
+    --cold: #0891b2;
     --nominal: #059669;
     --caution: #d97706;
-    --glow: rgba(2, 132, 199, 0.06);
-    --horizon: rgba(2, 132, 199, 0.03);
+    --glow: rgba(8, 145, 178, 0.06);
+    --horizon: rgba(8, 145, 178, 0.03);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--cold); border-radius: 0; opacity: 0.2; }
+/* Subtle noise texture — depth without scanlines */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-::selection { background: rgba(56, 189, 248, 0.25); color: #fff; }
-
-html { scroll-behavior: smooth; }
-
-a, button { transition: color 0.12s ease, border-color 0.15s ease, background-color 0.15s ease; }
-
-/* Scanline overlay */
+/* Deep space gradient background */
 body::after {
   content: "";
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(0, 0, 0, 0.04) 3px,
-    rgba(0, 0, 0, 0.04) 6px
-  );
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(34, 211, 238, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(34, 211, 238, 0.015) 0%, transparent 50%),
+    linear-gradient(to bottom, #0a0e14 0%, #060a10 50%, #0a0e14 100%);
 }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.2); border-radius: 2px; }
+
+::selection { background: rgba(34, 211, 238, 0.3); color: #fff; }
+
+html { scroll-behavior: smooth; }
+
+a, button { transition: color 0.15s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; }

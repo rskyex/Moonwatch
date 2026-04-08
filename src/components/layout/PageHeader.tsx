@@ -5,23 +5,21 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description }: PageHeaderProps) {
   return (
-    <div className="relative pt-6 pb-10 mb-10 border-b border-border/50">
-      <div className="relative">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="w-1 h-3 bg-cold/25 rounded-[1px]" />
-          <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-cold/50">
-            Moonwatch
-          </span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-sans font-extralight tracking-[-0.02em] leading-[0.95]">
-          {title}
-        </h1>
-        {description && (
-          <p className="mt-3 text-muted text-[12px] font-mono max-w-lg leading-relaxed">
-            {description}
-          </p>
-        )}
+    <div className="relative pt-8 pb-10 mb-12 border-b border-border/40">
+      <div className="flex items-center gap-3 mb-5">
+        <div className="w-1 h-5 rounded-full bg-cold/30" />
+        <span className="text-[10px] tracking-[0.2em] uppercase text-cold/60 font-medium">
+          Moonwatch
+        </span>
       </div>
+      <h1 className="text-3xl sm:text-4xl font-light tracking-[-0.02em] leading-[0.95] text-foreground">
+        {title}
+      </h1>
+      {description && (
+        <p className="mt-4 text-muted text-[14px] max-w-lg leading-relaxed">
+          {description}
+        </p>
+      )}
     </div>
   );
 }
