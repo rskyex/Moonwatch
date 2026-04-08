@@ -23,20 +23,20 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
   return (
     <Card href={`/missions/${mission.slug}`}>
       <div className="flex items-center justify-between mb-3">
-        <span className="text-[10px] tracking-wide uppercase text-dim">
+        <span className="text-[10px] tracking-wide uppercase text-muted">
           {mission.type.replace("-", " ")}
         </span>
-        <span className={`text-[10px] font-medium flex items-center gap-1.5 ${isActive ? "text-nominal" : statusColor.split(" ")[0]}`}>
-          {isActive && <span className="w-1.5 h-1.5 rounded-full bg-nominal shadow-[0_0_4px_rgba(52,211,153,0.4)] animate-pulse" />}
+        <span className={`text-[11px] font-semibold flex items-center gap-1.5 ${isActive ? "text-nominal" : statusColor.split(" ")[0]}`}>
+          {isActive && <span className="w-1.5 h-1.5 rounded-full bg-nominal shadow-[0_0_4px_rgba(74,222,128,0.5)] animate-pulse" />}
           {statusLabel}
         </span>
       </div>
 
-      <h3 className="text-[16px] font-medium text-foreground leading-snug">
+      <h3 className="text-[16px] font-semibold text-white leading-snug">
         {mission.name}
       </h3>
 
-      <div className="mt-2 flex items-center gap-2 text-[11px] text-dim">
+      <div className="mt-2 flex items-center gap-2 text-[12px] text-muted">
         {mission.launchDate && (
           <time dateTime={mission.launchDate} className="font-mono tabular-nums">
             {formatDate(mission.launchDate)}
@@ -50,7 +50,7 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
         )}
       </div>
 
-      <p className="mt-3 text-[13px] text-muted line-clamp-2 leading-relaxed">
+      <p className="mt-3 text-[13px] text-foreground line-clamp-2 leading-relaxed">
         {mission.description}
       </p>
     </Card>

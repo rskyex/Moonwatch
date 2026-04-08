@@ -10,12 +10,12 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border">
+    <header className="sticky top-0 z-50 bg-surface/95 backdrop-blur-xl border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-12 items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-cold/50 shadow-[0_0_6px_rgba(34,211,238,0.3)]" />
-            <span className="text-[13px] font-semibold tracking-wide text-foreground">
+            <span className="w-2 h-2 rounded-full bg-cold shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
+            <span className="text-[14px] font-bold tracking-wide text-white">
               Moonwatch
             </span>
           </Link>
@@ -27,10 +27,10 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 text-[12px] rounded-md transition-all ${
+                  className={`px-3 py-1.5 text-[13px] rounded-md transition-all ${
                     isActive
-                      ? "text-cold bg-cold/10"
-                      : "text-muted hover:text-foreground hover:bg-surface-alt"
+                      ? "text-cold bg-cold/10 font-medium"
+                      : "text-foreground hover:text-cold hover:bg-cold/5"
                   }`}
                 >
                   {item.name}
@@ -41,7 +41,7 @@ export function Header() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-muted hover:text-foreground"
+            className="md:hidden p-2 text-foreground hover:text-cold"
             aria-label="Menu"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -63,8 +63,8 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-3 py-2 text-[13px] rounded-md ${
-                    isActive ? "text-cold bg-cold/10" : "text-muted hover:text-foreground"
+                  className={`block px-3 py-2 text-[14px] rounded-md ${
+                    isActive ? "text-cold bg-cold/10 font-medium" : "text-foreground hover:text-cold"
                   }`}
                 >
                   {item.name}
