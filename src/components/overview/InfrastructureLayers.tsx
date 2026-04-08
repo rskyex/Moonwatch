@@ -5,26 +5,34 @@ interface InfrastructureLayersProps {
   layers: InfrastructureByLayer[];
 }
 
+/** Infrastructure by layer — horizontal rows, not card grid */
 export default function InfrastructureLayers({ layers }: InfrastructureLayersProps) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+    <div className="space-y-4">
       {layers.map(({ category, label, count, items }) => (
-        <Link
-          key={category}
-          href={`/infrastructure#${category}`}
-          className="group p-3 rounded-lg border border-border bg-surface hover:border-accent/20 transition-all"
-        >
-          <p className="text-sm font-medium text-foreground group-hover:text-accent transition-colors">{label}</p>
-          <p className="text-xs text-muted mt-1">
-            <span className="text-foreground font-medium tabular-nums">{count}</span> {count === 1 ? "system" : "systems"}
-          </p>
-          <div className="mt-2 flex flex-wrap gap-1">
-            {items.slice(0, 2).map(i => (
-              <span key={i.id} className="text-[10px] text-muted/70 truncate max-w-full">{i.name}</span>
+        <div key={category} className="flex items-start gap-4">
+          <Link
+            href={`/infrastructure`}
+            className="text-[13px] font-medium text-foreground hover:text-accent transition-colors w-40 shrink-0 pt-0.5"
+          >
+            {label}
+          </Link>
+          <div className="flex-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-muted">
+            {items.slice(0, 3).map(i => (
+              <Link
+                key={i.id}
+                href={`/infrastructure/${i.slug}`}
+                className="hover:text-foreground transition-colors"
+              >
+                {i.name}
+              </Link>
             ))}
-            {items.length > 2 && <span className="text-[10px] text-muted/50">+{items.length - 2}</span>}
+            {items.length > 3 && (
+              <span className="text-dim">+{items.length - 3}</span>
+            )}
           </div>
-        </Link>
+          <span className="text-[11px] text-dim tabular-nums shrink-0">{count}</span>
+        </div>
       ))}
     </div>
   );

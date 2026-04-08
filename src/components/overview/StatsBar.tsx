@@ -7,23 +7,19 @@ interface StatsBarProps {
   stats: Stat[];
 }
 
+/** Quiet inline stats — not a KPI dashboard, just context */
 export default function StatsBar({ stats }: StatsBarProps) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-      {stats.map((stat) => (
-        <div
-          key={stat.label}
-          className="relative overflow-hidden bg-surface border border-border rounded-lg px-4 py-4 group"
-        >
-          {/* Subtle top accent line */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <p className="text-2xl font-semibold tracking-tight text-foreground tabular-nums">
-            {stat.value}
-          </p>
-          <p className="mt-1.5 text-[10px] text-muted uppercase tracking-[0.15em] font-medium">
-            {stat.label}
-          </p>
-        </div>
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-dim">
+      {stats.map((stat, i) => (
+        <span key={stat.label}>
+          <span className="text-foreground tabular-nums font-medium">{stat.value}</span>
+          {" "}
+          <span className="lowercase">{stat.label}</span>
+          {i < stats.length - 1 && (
+            <span className="hidden sm:inline text-border ml-6">&middot;</span>
+          )}
+        </span>
       ))}
     </div>
   );

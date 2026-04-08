@@ -1,48 +1,36 @@
-import { siteConfig } from "@/config/site";
-
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden border-b border-border pb-16 mb-12">
-      {/* Subtle radial glow — horizon effect */}
+    <section className="relative pt-16 sm:pt-24 pb-20 sm:pb-32">
+      {/* Atmospheric gradient — lunar horizon */}
       <div
-        className="pointer-events-none absolute inset-0 -top-24"
+        className="pointer-events-none absolute inset-0"
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, var(--glow) 0%, transparent 70%)",
+            "radial-gradient(ellipse 100% 60% at 50% -10%, var(--glow) 0%, transparent 60%)",
         }}
       />
 
-      <div className="relative max-w-3xl pt-4">
-        {/* Eyebrow */}
-        <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted mb-6">
-          Lunar Exploration Observatory
-        </p>
-
-        {/* Title */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.08]">
-          {siteConfig.siteName}
+      <div className="relative">
+        {/* Title — large, quiet, authoritative */}
+        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-light tracking-[-0.03em] text-foreground leading-[0.95]">
+          Moon
+          <span className="font-normal">watch</span>
         </h1>
 
-        {/* Tagline — the emotional line */}
-        <p className="mt-5 text-lg sm:text-xl text-accent font-medium leading-relaxed">
-          {siteConfig.tagline}
+        {/* Tagline */}
+        <p className="mt-6 sm:mt-8 text-base sm:text-lg text-muted font-light leading-relaxed max-w-lg">
+          A structured observatory for lunar exploration.
+          <br className="hidden sm:block" />
+          Missions, infrastructure, and milestones — sourced and connected.
         </p>
 
-        {/* Description */}
-        <p className="mt-5 text-sm sm:text-base text-muted leading-relaxed max-w-2xl">
-          A structured reference for every mission, entity, and milestone
-          in humanity&apos;s return to the lunar surface. Sourced, connected,
-          and continuously updated.
-        </p>
-
-        {/* Horizon line — subtle decorative element */}
-        <div className="mt-10 flex items-center gap-3">
-          <div className="h-px flex-1 bg-gradient-to-r from-accent/30 via-accent/10 to-transparent" />
-          <span className="text-[10px] tracking-[0.3em] uppercase text-muted/60 font-medium">
+        {/* Horizon rule */}
+        <div className="mt-12 sm:mt-16 flex items-center gap-4">
+          <div className="h-px w-16 bg-dim/40" />
+          <span className="text-[9px] tracking-[0.4em] uppercase text-dim font-medium">
             384,400 km
           </span>
-          <div className="h-px w-12 bg-accent/10" />
         </div>
       </div>
     </section>

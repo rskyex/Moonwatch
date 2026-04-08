@@ -1,5 +1,5 @@
 import type { Mission, Entity } from "@/types";
-import { Card, StatusBadge, TagChip } from "@/components/shared";
+import { Card } from "@/components/shared";
 import {
   getMissionStatusLabel,
   getMissionStatusColor,
@@ -21,19 +21,21 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
 
   return (
     <Card href={`/missions/${mission.slug}`}>
-      {/* Mission type — small eyebrow */}
-      <p className="text-[10px] font-medium tracking-[0.15em] uppercase text-muted/60 mb-2">
+      {/* Type eyebrow */}
+      <p className="text-[10px] tracking-[0.15em] uppercase text-dim mb-2">
         {mission.type.replace("-", " ")}
       </p>
 
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-base font-semibold text-foreground leading-snug">
+        <h3 className="text-[15px] font-medium text-foreground leading-snug">
           {mission.name}
         </h3>
-        <StatusBadge label={statusLabel} colorClass={statusColor} />
+        <span className={`text-[11px] font-medium shrink-0 ${statusColor.split(" ")[0]}`}>
+          {statusLabel}
+        </span>
       </div>
 
-      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+      <div className="mt-1.5 flex flex-wrap items-center gap-x-2 text-[11px] text-dim">
         {mission.launchDate && (
           <time dateTime={mission.launchDate} className="tabular-nums">
             {formatDate(mission.launchDate)}
@@ -41,23 +43,15 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
         )}
         {entityNames && (
           <>
-            {mission.launchDate && <span aria-hidden="true">&middot;</span>}
+            {mission.launchDate && <span>&middot;</span>}
             <span>{entityNames}</span>
           </>
         )}
       </div>
 
-      <p className="mt-3 text-sm text-muted line-clamp-2 leading-relaxed">
+      <p className="mt-3 text-[13px] text-muted line-clamp-2 leading-relaxed">
         {mission.description}
       </p>
-
-      {mission.tags.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {mission.tags.slice(0, 3).map((tag) => (
-            <TagChip key={tag} label={tag} />
-          ))}
-        </div>
-      )}
     </Card>
   );
 }

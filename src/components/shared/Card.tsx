@@ -7,7 +7,7 @@ interface CardProps {
 }
 
 export default function Card({ children, href, className = "" }: CardProps) {
-  const baseClasses = `relative bg-surface border border-border rounded-lg p-5 transition-all duration-200 hover:border-accent/20 hover:shadow-[0_0_20px_var(--glow)] ${className}`;
+  const baseClasses = `relative border border-border/60 rounded-lg p-5 transition-colors duration-150 hover:border-muted/40 ${className}`;
 
   if (href) {
     return (

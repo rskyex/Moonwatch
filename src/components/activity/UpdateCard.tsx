@@ -1,5 +1,4 @@
 import type { Update } from "@/types";
-import { Card, StatusBadge } from "@/components/shared";
 import {
   getSignificanceLabel,
   getSignificanceColor,
@@ -13,71 +12,62 @@ interface UpdateCardProps {
   entityNames?: string[];
 }
 
+/** Editorial update item — not a card, a structured text entry */
 export default function UpdateCard({
   update,
   sourceName,
   missionNames,
   entityNames,
 }: UpdateCardProps) {
+  const sigColor = getSignificanceColor(update.significance).split(" ")[0]?.replace("text-", "bg-") || "bg-dim";
+
   return (
-    <Card>
-      <div className="flex items-start gap-4">
-        {/* Significance indicator — vertical accent bar */}
-        <div className="flex flex-col items-center pt-1">
-          <div
-            className={`w-1.5 h-1.5 rounded-full ${getSignificanceColor(update.significance).split(" ")[0].replace("text-", "bg-")}`}
-          />
-          <div className="w-px h-full bg-border mt-1.5" />
-        </div>
+    <article className="py-4 border-b border-border/40 last:border-0">
+      <div className="flex items-start gap-3">
+        {/* Significance dot */}
+        <div className={`w-1.5 h-1.5 rounded-full ${sigColor} mt-2 shrink-0`} />
 
         <div className="min-w-0 flex-1">
-          {/* Header row */}
-          <div className="flex items-center gap-2 mb-2">
-            <StatusBadge
-              label={getSignificanceLabel(update.significance)}
-              colorClass={getSignificanceColor(update.significance)}
-            />
-            <time dateTime={update.date} className="text-[11px] text-muted/70 tabular-nums">
+          {/* Meta line */}
+          <div className="flex items-center gap-2 text-[11px] text-dim mb-1">
+            <time dateTime={update.date} className="tabular-nums">
               {formatDate(update.date)}
             </time>
+            <span className="text-border">&middot;</span>
+            <span className={getSignificanceColor(update.significance).split(" ")[0]}>
+              {getSignificanceLabel(update.significance)}
+            </span>
+            {sourceName && (
+              <>
+                <span className="text-border">&middot;</span>
+                <span>{sourceName}</span>
+              </>
+            )}
           </div>
 
           {/* Title */}
-          <h3 className="text-sm font-semibold text-foreground leading-snug">
+          <h3 className="text-[14px] font-medium text-foreground leading-snug">
             {update.title}
           </h3>
 
           {/* Summary */}
-          <p className="mt-2 text-sm text-muted line-clamp-2 leading-relaxed">
+          <p className="mt-1.5 text-[13px] text-muted leading-relaxed line-clamp-2">
             {update.summary}
           </p>
 
-          {/* Associations + source */}
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            {missionNames?.map((name) => (
-              <span
-                key={name}
-                className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium bg-accent-soft text-accent border border-accent/10"
-              >
-                {name}
-              </span>
-            ))}
-            {entityNames?.map((name) => (
-              <span
-                key={name}
-                className="inline-flex items-center rounded px-1.5 py-0.5 text-[11px] text-muted bg-surface-alt border border-border"
-              >
-                {name}
-              </span>
-            ))}
-            {sourceName && (
-              <span className="text-[10px] text-muted/50 ml-auto">
-                via {sourceName}
-              </span>
-            )}
-          </div>
+          {/* Associations */}
+          {(missionNames?.length || entityNames?.length) ? (
+            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-dim">
+              {missionNames?.map((name) => (
+                <span key={name} className="text-foreground">{name}</span>
+              ))}
+              {entityNames?.map((name) => (
+                <span key={name}>{name}</span>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
-    </Card>
+    </article>
   );
 }

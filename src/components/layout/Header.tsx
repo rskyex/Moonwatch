@@ -10,19 +10,12 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
+    <header className="border-b border-border/60 bg-background/90 backdrop-blur-sm sticky top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-14 items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            {/* Glyph mark */}
-            <span className="flex items-center justify-center w-6 h-6 rounded-full border border-accent/30 bg-accent/5 group-hover:bg-accent/10 transition-colors">
-              <span className="block w-1.5 h-1.5 rounded-full bg-accent" />
-            </span>
-            <span className="text-sm font-semibold tracking-tight">
+        <div className="flex h-12 items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="text-[13px] font-medium tracking-tight text-foreground">
               {siteConfig.siteName}
-            </span>
-            <span className="hidden lg:inline text-[10px] text-muted/60 font-medium tracking-[0.15em] uppercase">
-              Observatory
             </span>
           </Link>
 
@@ -37,10 +30,10 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 text-[13px] rounded-md transition-colors ${
+                  className={`px-2.5 py-1 text-[12px] transition-colors ${
                     isActive
-                      ? "text-foreground font-medium bg-surface-alt"
-                      : "text-muted hover:text-foreground hover:bg-surface-alt/50"
+                      ? "text-foreground"
+                      : "text-muted hover:text-foreground"
                   }`}
                 >
                   {item.name}
@@ -49,19 +42,12 @@ export function Header() {
             })}
           </nav>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-muted hover:text-foreground transition-colors"
+            className="md:hidden p-2 text-muted hover:text-foreground"
             aria-label="Toggle menu"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               {mobileOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -71,23 +57,17 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile nav */}
         {mobileOpen && (
-          <nav className="md:hidden pb-4 pt-2 border-t border-border">
+          <nav className="md:hidden pb-3 pt-1 border-t border-border/40">
             {navigation.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-3 py-2 text-sm rounded-md transition-colors ${
-                    isActive
-                      ? "bg-surface-alt text-foreground font-medium"
-                      : "text-muted hover:text-foreground"
+                  className={`block px-2 py-1.5 text-[13px] ${
+                    isActive ? "text-foreground" : "text-muted hover:text-foreground"
                   }`}
                 >
                   {item.name}
