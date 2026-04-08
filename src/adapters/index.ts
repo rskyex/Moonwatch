@@ -71,3 +71,9 @@ export async function checkAllSources(): Promise<Record<string, boolean>> {
   }
   return checks;
 }
+
+// Lunar data layer exports
+export { getMoonTrekLayers, getDefaultLayer, buildTileUrl } from "./moon-trek";
+export { MAJOR_LUNAR_FEATURES, searchLunarFeatures, getFeaturesNearCoordinate, getFeaturesByType, getSouthPoleFeatures } from "./usgs-moon";
+export { LROC_KEY_IMAGES, getLrocImagesNear, buildQuickMapUrl } from "./lroc";
+export { getCurrentLunarState, fetchEphemeris, getLunarPhaseLabel } from "./jpl";

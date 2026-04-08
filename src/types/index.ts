@@ -10,3 +10,4 @@ export * from "./update";
 export * from "./infrastructure";
 export * from "./milestone";
 export * from "./region";
+export type { LunarFeature, LunarMapLayer, LrocImageRef, EphemerisPoint } from "./lunar";
