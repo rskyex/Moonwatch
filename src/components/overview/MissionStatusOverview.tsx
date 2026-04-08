@@ -17,19 +17,21 @@ export default function MissionStatusOverview({ groups }: MissionStatusOverviewP
   );
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       {active.length > 0 && (
-        <div>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-cold/60 mb-4 flex items-center gap-2">
-            <span className="w-1 h-1 rounded-full bg-cold/40" />
-            Active
-          </p>
+        <div className="p-4 bg-surface border border-cold/15 rounded-sm">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-nominal animate-pulse" />
+            <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-nominal/80">
+              Active Missions
+            </span>
+          </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {active.flatMap(g => g.missions).map(m => (
               <Link
                 key={m.id}
                 href={`/missions/${m.slug}`}
-                className="text-[15px] font-light text-foreground hover:text-cold transition-colors"
+                className="text-[14px] font-sans font-light text-foreground hover:text-cold transition-colors"
               >
                 {m.name}
               </Link>
@@ -39,15 +41,18 @@ export default function MissionStatusOverview({ groups }: MissionStatusOverviewP
       )}
       {developing.length > 0 && (
         <div>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-dim mb-4">
-            In Development
-          </p>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-caution/40" />
+            <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-caution/60">
+              In Development
+            </span>
+          </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {developing.flatMap(g => g.missions).map(m => (
               <Link
                 key={m.id}
                 href={`/missions/${m.slug}`}
-                className="text-[14px] font-light text-muted hover:text-foreground transition-colors"
+                className="text-[13px] font-sans font-light text-muted hover:text-foreground transition-colors"
               >
                 {m.name}
               </Link>
@@ -57,15 +62,18 @@ export default function MissionStatusOverview({ groups }: MissionStatusOverviewP
       )}
       {concluded.length > 0 && (
         <div>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-dim/60 mb-4">
-            Concluded
-          </p>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-1 h-1 rounded-full bg-dim/40" />
+            <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-dim/60">
+              Concluded
+            </span>
+          </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {concluded.flatMap(g => g.missions).map(m => (
               <Link
                 key={m.id}
                 href={`/missions/${m.slug}`}
-                className="text-[13px] font-light text-dim hover:text-muted transition-colors"
+                className="text-[12px] font-sans font-light text-dim hover:text-muted transition-colors"
               >
                 {m.name}
               </Link>

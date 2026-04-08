@@ -10,26 +10,27 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-11 items-center justify-between border-b border-border/40">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="w-1 h-1 rounded-full bg-cold/50" />
-            <span className="text-[12px] font-medium tracking-[0.05em] text-foreground">
+        <div className="flex h-10 items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-nominal/60" />
+            <span className="text-[11px] font-mono font-medium tracking-[0.1em] uppercase text-cold/80">
               Moonwatch
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center">
+          <nav className="hidden md:flex items-center gap-px">
             {navigation.map((item) => {
-              const isActive =
-                item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+              const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1 text-[11px] tracking-wide ${
-                    isActive ? "text-foreground" : "text-dim hover:text-muted"
+                  className={`px-3 py-1 text-[10px] font-mono tracking-[0.1em] uppercase border-b ${
+                    isActive
+                      ? "text-cold border-cold/40"
+                      : "text-dim border-transparent hover:text-muted hover:border-border"
                   }`}
                 >
                   {item.name}
@@ -54,7 +55,7 @@ export function Header() {
         </div>
 
         {mobileOpen && (
-          <nav className="md:hidden py-3 space-y-1">
+          <nav className="md:hidden py-2 border-t border-border space-y-0.5">
             {navigation.map((item) => {
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
@@ -62,8 +63,8 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-1 py-1.5 text-[12px] ${
-                    isActive ? "text-foreground" : "text-dim hover:text-muted"
+                  className={`block px-2 py-1.5 text-[11px] font-mono uppercase tracking-wider ${
+                    isActive ? "text-cold" : "text-dim hover:text-muted"
                   }`}
                 >
                   {item.name}

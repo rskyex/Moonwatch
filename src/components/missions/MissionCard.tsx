@@ -22,38 +22,39 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
 
   return (
     <Card href={`/missions/${mission.slug}`}>
-      {/* Meta line */}
+      {/* Instrument header */}
       <div className="flex items-center justify-between mb-3">
-        <span className="text-[9px] tracking-[0.25em] uppercase text-dim">
+        <span className="text-[8px] font-mono tracking-[0.2em] uppercase text-dim">
           {mission.type.replace("-", " ")}
         </span>
-        <span className={`text-[10px] tracking-wide ${isActive ? "text-cold/60" : statusColor.split(" ")[0]}`}>
+        <span className={`text-[9px] font-mono tracking-[0.1em] uppercase flex items-center gap-1.5 ${isActive ? "text-nominal/80" : statusColor.split(" ")[0]}`}>
+          {isActive && <span className="w-1 h-1 rounded-full bg-nominal/60 animate-pulse" />}
           {statusLabel}
         </span>
       </div>
 
-      {/* Name */}
-      <h3 className="text-[16px] font-light text-foreground leading-snug">
+      {/* Mission name */}
+      <h3 className="text-[15px] font-sans font-light text-foreground leading-snug">
         {mission.name}
       </h3>
 
-      {/* Context */}
-      <div className="mt-1.5 flex items-center gap-2 text-[11px] text-dim">
+      {/* Telemetry line */}
+      <div className="mt-2 flex items-center gap-2 text-[10px] font-mono text-dim">
         {mission.launchDate && (
-          <time dateTime={mission.launchDate} className="tabular-nums font-mono">
+          <time dateTime={mission.launchDate} className="tabular-nums">
             {formatDate(mission.launchDate)}
           </time>
         )}
         {entityNames && (
           <>
-            {mission.launchDate && <span className="text-border">/</span>}
+            {mission.launchDate && <span className="text-border">|</span>}
             <span>{entityNames}</span>
           </>
         )}
       </div>
 
-      {/* Description */}
-      <p className="mt-3 text-[13px] text-muted/70 font-light line-clamp-2 leading-relaxed">
+      {/* Brief */}
+      <p className="mt-3 text-[12px] font-sans text-muted/70 font-light line-clamp-2 leading-relaxed">
         {mission.description}
       </p>
     </Card>

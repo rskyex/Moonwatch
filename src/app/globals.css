@@ -13,67 +13,92 @@
   --color-horizon: var(--horizon);
   --color-dim: var(--dim);
   --color-cold: var(--cold);
+  --color-nominal: var(--nominal);
+  --color-caution: var(--caution);
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 }
 
 /* -----------------------------------------------------------------------
-   Moonwatch — Near-future lunar observatory
+   Moonwatch — Mission Operations Console
 
-   Base: deep void, graphite, lunar ash
-   Accent: cold mineral — ice-blue used with extreme restraint
-   Depth: via surface layering, not decoration
+   A lunar mission control interface.
+   Deep void background. Instrument-grade surfaces.
+   Cold telemetry blue for active systems.
+   Nominal green for operational status.
    ----------------------------------------------------------------------- */
 
 :root {
-  --background: #050507;
-  --foreground: #c8c8cd;
-  --surface: #111114;
-  --surface-alt: #1a1a1f;
-  --border-color: #222228;
-  --muted: #6b6b76;
-  --dim: #45454f;
-  --accent: #8b8b96;
-  --accent-soft: #12121a;
-  --cold: #7dd3fc;
-  --glow: rgba(125, 211, 252, 0.04);
-  --horizon: rgba(125, 211, 252, 0.02);
+  --background: #030306;
+  --foreground: #b4b4be;
+  --surface: #0a0a0f;
+  --surface-alt: #101018;
+  --border-color: #1a1a24;
+  --muted: #5a5a6a;
+  --dim: #3a3a48;
+  --accent: #6a6a7a;
+  --accent-soft: #0c0c14;
+  --cold: #38bdf8;
+  --nominal: #4ade80;
+  --caution: #fbbf24;
+  --glow: rgba(56, 189, 248, 0.06);
+  --horizon: rgba(56, 189, 248, 0.03);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #fafafa;
-    --foreground: #18181b;
+    --background: #f8f8fa;
+    --foreground: #1a1a2e;
     --surface: #ffffff;
-    --surface-alt: #f4f4f5;
-    --border-color: #e4e4e7;
-    --muted: #71717a;
-    --dim: #a1a1aa;
-    --accent: #52525b;
-    --accent-soft: #f4f4f5;
+    --surface-alt: #f0f0f5;
+    --border-color: #dddde5;
+    --muted: #6a6a7a;
+    --dim: #9a9aaa;
+    --accent: #5a5a6a;
+    --accent-soft: #ededf5;
     --cold: #0284c7;
-    --glow: rgba(2, 132, 199, 0.04);
-    --horizon: rgba(2, 132, 199, 0.02);
+    --nominal: #16a34a;
+    --caution: #d97706;
+    --glow: rgba(2, 132, 199, 0.05);
+    --horizon: rgba(2, 132, 199, 0.03);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-/* Scrollbar — near invisible */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 1px; }
+/* Scrollbar — instrument style */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--cold); border-radius: 0; opacity: 0.3; }
 
-/* Selection — cold mineral highlight */
-::selection { background: rgba(125, 211, 252, 0.15); color: var(--foreground); }
+/* Selection */
+::selection { background: rgba(56, 189, 248, 0.2); color: #fff; }
 
 html { scroll-behavior: smooth; }
 
-/* Subtle transitions on all interactive elements */
-a, button { transition: color 0.15s ease, border-color 0.2s ease, opacity 0.15s ease; }
+/* Transitions */
+a, button { transition: color 0.12s ease, border-color 0.15s ease, background-color 0.15s ease; }
+
+/* Scanline texture — very subtle CRT feel */
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}

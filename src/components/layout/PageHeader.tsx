@@ -5,22 +5,19 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description }: PageHeaderProps) {
   return (
-    <div className="relative pt-8 pb-12 mb-12">
-      {/* Subtle top glow */}
-      <div
-        className="pointer-events-none absolute -top-20 left-0 right-0 h-40"
-        aria-hidden="true"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 100% at 20% 0%, var(--glow) 0%, transparent 70%)",
-        }}
-      />
+    <div className="relative pt-6 pb-10 mb-10 border-b border-border/50">
       <div className="relative">
-        <h1 className="text-4xl sm:text-5xl font-extralight tracking-[-0.03em] leading-[0.95]">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="w-1 h-3 bg-cold/25 rounded-[1px]" />
+          <span className="text-[9px] font-mono tracking-[0.3em] uppercase text-cold/50">
+            Moonwatch
+          </span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-sans font-extralight tracking-[-0.02em] leading-[0.95]">
           {title}
         </h1>
         {description && (
-          <p className="mt-4 text-muted text-[14px] max-w-lg leading-relaxed font-light">
+          <p className="mt-3 text-muted text-[12px] font-mono max-w-lg leading-relaxed">
             {description}
           </p>
         )}

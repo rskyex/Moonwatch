@@ -12,17 +12,17 @@ export default function SectionHeading({
   viewAllLabel = "View all",
 }: SectionHeadingProps) {
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <div className="w-0.5 h-0.5 rounded-full bg-cold/40" />
-        <h2 className="text-[10px] font-medium tracking-[0.3em] uppercase text-dim">
+    <div className="flex items-center justify-between border-b border-border pb-2">
+      <div className="flex items-center gap-2">
+        <span className="w-1 h-3 bg-cold/30 rounded-[1px]" />
+        <h2 className="text-[10px] font-mono font-medium tracking-[0.25em] uppercase text-cold/70">
           {title}
         </h2>
       </div>
       {viewAllHref && (
         <Link
           href={viewAllHref}
-          className="text-[10px] text-dim/60 hover:text-muted transition-colors tracking-wider"
+          className="text-[9px] font-mono text-dim hover:text-cold/60 transition-colors tracking-[0.15em] uppercase"
         >
           {viewAllLabel} &rarr;
         </Link>

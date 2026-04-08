@@ -1,58 +1,62 @@
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[60vh] flex flex-col justify-end pb-16 sm:pb-24">
+    <section className="relative min-h-[70vh] flex flex-col justify-end pb-12 sm:pb-20">
       {/* Atmospheric layers */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        {/* Horizon glow — cold light rising from below */}
+        {/* Horizon glow — cold telemetry light from the lunar limb */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 120% 40% at 50% 100%, var(--glow) 0%, transparent 70%)",
+              "radial-gradient(ellipse 140% 30% at 50% 105%, rgba(56,189,248,0.08) 0%, transparent 60%)",
           }}
         />
-        {/* Upper void fade */}
+        {/* Grid overlay — mission operations feel */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
-            background:
-              "linear-gradient(to bottom, var(--background) 0%, transparent 40%)",
+            backgroundImage:
+              "linear-gradient(var(--cold) 1px, transparent 1px), linear-gradient(90deg, var(--cold) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
 
       <div className="relative">
-        {/* Classification marker */}
-        <div className="flex items-center gap-3 mb-8 sm:mb-12">
-          <div className="w-1 h-1 rounded-full bg-cold/40" />
-          <span className="text-[9px] tracking-[0.5em] uppercase text-dim font-medium">
-            Lunar Exploration Observatory
+        {/* System designation */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-nominal animate-pulse" />
+          <span className="text-[10px] tracking-[0.4em] uppercase text-cold/70 font-mono">
+            Systems Nominal
           </span>
         </div>
 
-        {/* Title — monumental scale */}
-        <h1 className="text-6xl sm:text-8xl lg:text-[9rem] font-extralight tracking-[-0.04em] text-foreground leading-[0.88]">
-          Moon<span className="font-light">watch</span>
+        {/* Title — mission display scale */}
+        <h1 className="text-5xl sm:text-7xl lg:text-[8rem] font-extralight tracking-[-0.04em] text-foreground leading-[0.88] font-sans">
+          MOON<span className="text-cold/80">WATCH</span>
         </h1>
 
-        {/* Deck — quiet, expansive */}
-        <p className="mt-8 sm:mt-12 text-[15px] sm:text-[17px] text-muted font-light leading-[1.7] max-w-md">
-          Tracking every mission to the Moon.
-          <br />
-          Infrastructure, actors, and milestones —
-          <br className="hidden sm:block" />
-          sourced and structurally connected.
-        </p>
+        {/* Subtitle — telemetry readout style */}
+        <div className="mt-8 sm:mt-12 border-l border-cold/20 pl-4">
+          <p className="text-[13px] text-muted leading-[1.8]">
+            Tracking every mission to the Moon.
+            <br />
+            Infrastructure, actors, and milestones —
+            <br className="hidden sm:block" />
+            sourced and structurally connected.
+          </p>
+        </div>
 
-        {/* Horizon line — the frontier boundary */}
-        <div className="mt-16 sm:mt-24 flex items-center">
-          <div className="h-px flex-1 max-w-xs" style={{
-            background: "linear-gradient(to right, var(--cold), transparent)",
-            opacity: 0.15,
-          }} />
-          <span className="ml-4 text-[8px] tracking-[0.6em] uppercase text-dim/60 font-mono">
-            384,400 km
-          </span>
+        {/* Telemetry bar */}
+        <div className="mt-12 sm:mt-20 flex items-center gap-4 text-[9px] font-mono text-dim tracking-wider">
+          <span className="text-cold/40">DST</span>
+          <span className="text-muted tabular-nums">384,400 km</span>
+          <span className="w-8 h-px bg-cold/15" />
+          <span className="text-cold/40">LAT</span>
+          <span className="text-muted tabular-nums">&minus;89.9&deg;</span>
+          <span className="w-8 h-px bg-cold/15" />
+          <span className="text-cold/40">STATUS</span>
+          <span className="text-nominal/70">OPERATIONAL</span>
         </div>
       </div>
     </section>

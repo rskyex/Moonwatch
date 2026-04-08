@@ -7,17 +7,20 @@ interface StatsBarProps {
   stats: Stat[];
 }
 
-/** Quiet inline stats — not a KPI dashboard, just context */
+/** Telemetry readout bar */
 export default function StatsBar({ stats }: StatsBarProps) {
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-dim">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 py-3 px-4 bg-surface border border-border rounded-sm">
       {stats.map((stat, i) => (
-        <span key={stat.label}>
-          <span className="text-foreground tabular-nums font-medium">{stat.value}</span>
-          {" "}
-          <span className="lowercase">{stat.label}</span>
+        <span key={stat.label} className="flex items-center gap-2">
+          <span className="text-[9px] font-mono tracking-[0.15em] uppercase text-dim">
+            {stat.label}
+          </span>
+          <span className="text-[12px] font-mono text-cold tabular-nums font-medium">
+            {stat.value}
+          </span>
           {i < stats.length - 1 && (
-            <span className="hidden sm:inline text-border ml-6">&middot;</span>
+            <span className="hidden sm:inline w-px h-3 bg-border ml-4" />
           )}
         </span>
       ))}
