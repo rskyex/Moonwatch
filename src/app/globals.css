@@ -20,29 +20,26 @@
 }
 
 /* -----------------------------------------------------------------------
-   Moonwatch — Mission Operations Console
+   Moonwatch — Deep Void Mission Console
 
-   A lunar mission control interface.
-   Deep void background. Instrument-grade surfaces.
-   Cold telemetry blue for active systems.
-   Nominal green for operational status.
+   Pure black void. The Moon is the only light source.
    ----------------------------------------------------------------------- */
 
 :root {
-  --background: #030306;
-  --foreground: #b4b4be;
-  --surface: #0a0a0f;
-  --surface-alt: #101018;
-  --border-color: #1a1a24;
-  --muted: #5a5a6a;
-  --dim: #3a3a48;
-  --accent: #6a6a7a;
-  --accent-soft: #0c0c14;
+  --background: #000001;
+  --foreground: #a0a0b0;
+  --surface: #060609;
+  --surface-alt: #0c0c12;
+  --border-color: #14141e;
+  --muted: #505060;
+  --dim: #30303c;
+  --accent: #505060;
+  --accent-soft: #0a0a12;
   --cold: #38bdf8;
-  --nominal: #4ade80;
+  --nominal: #34d399;
   --caution: #fbbf24;
-  --glow: rgba(56, 189, 248, 0.06);
-  --horizon: rgba(56, 189, 248, 0.03);
+  --glow: rgba(56, 189, 248, 0.08);
+  --horizon: rgba(56, 189, 248, 0.04);
 }
 
 @media (prefers-color-scheme: light) {
@@ -57,9 +54,9 @@
     --accent: #5a5a6a;
     --accent-soft: #ededf5;
     --cold: #0284c7;
-    --nominal: #16a34a;
+    --nominal: #059669;
     --caution: #d97706;
-    --glow: rgba(2, 132, 199, 0.05);
+    --glow: rgba(2, 132, 199, 0.06);
     --horizon: rgba(2, 132, 199, 0.03);
   }
 }
@@ -74,20 +71,17 @@ body {
   line-height: 1.6;
 }
 
-/* Scrollbar — instrument style */
 ::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: var(--surface); }
-::-webkit-scrollbar-thumb { background: var(--cold); border-radius: 0; opacity: 0.3; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--cold); border-radius: 0; opacity: 0.2; }
 
-/* Selection */
-::selection { background: rgba(56, 189, 248, 0.2); color: #fff; }
+::selection { background: rgba(56, 189, 248, 0.25); color: #fff; }
 
 html { scroll-behavior: smooth; }
 
-/* Transitions */
 a, button { transition: color 0.12s ease, border-color 0.15s ease, background-color 0.15s ease; }
 
-/* Scanline texture — very subtle CRT feel */
+/* Scanline overlay */
 body::after {
   content: "";
   pointer-events: none;
@@ -97,8 +91,8 @@ body::after {
   background: repeating-linear-gradient(
     to bottom,
     transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
+    transparent 3px,
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 6px
   );
 }

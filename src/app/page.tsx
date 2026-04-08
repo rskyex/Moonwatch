@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import HeroSection from "@/components/overview/HeroSection";
-import StatsBar from "@/components/overview/StatsBar";
 import SectionHeading from "@/components/shared/SectionHeading";
 import UpdateCard from "@/components/activity/UpdateCard";
 import MilestoneCard from "@/components/timeline/MilestoneCard";
@@ -9,6 +8,7 @@ import MissionStatusOverview from "@/components/overview/MissionStatusOverview";
 import EcosystemOverview from "@/components/overview/EcosystemOverview";
 import InfrastructureLayers from "@/components/overview/InfrastructureLayers";
 import RegionActivityMap from "@/components/overview/RegionActivityMap";
+import LunarMap from "@/components/regions/LunarMap";
 
 import {
   getActiveMissionCount,
@@ -18,7 +18,10 @@ import {
   getUpcomingMilestones,
   getSourceById,
   getAllInfrastructure,
+  getAllRegions,
 } from "@/lib/data-access";
+
+import { getMissionsByRegion } from "@/lib/data-access";
 
 import {
   getMissionsByStatusGroups,
@@ -27,13 +30,13 @@ import {
   getRegionActivityOverview,
 } from "@/lib/intelligence";
 
+import { MAJOR_LUNAR_FEATURES } from "@/adapters/usgs-moon";
 import { getLiveUpdates, getLunarStateDisplay } from "@/lib/live-data";
 
 export const metadata: Metadata = {
   title: "Moonwatch — Lunar Exploration Observatory",
 };
 
-// Revalidate every hour — ISR for live data
 export const revalidate = 3600;
 
 function buildNameMap(items: { id: string; name: string; shortName?: string }[]): Map<string, string> {
@@ -51,15 +54,13 @@ function resolveNames(ids: string[], nameMap: Map<string, string>): string[] {
 export default async function HomePage() {
   const allMissions = getAllMissions();
   const allEntities = getAllEntities();
-  const allSources = getAllSources();
+  const allRegions = getAllRegions();
 
   const missionNameMap = buildNameMap(allMissions);
   const entityNameMap = buildNameMap(allEntities);
 
-  // Fetch live updates (RSS + curated, merged)
   const liveUpdates = await getLiveUpdates();
   const recentUpdates = liveUpdates.slice(0, 3);
-
   const upcomingMilestones = getUpcomingMilestones(4);
 
   const missionStatusGroups = getMissionsByStatusGroups();
@@ -67,27 +68,43 @@ export default async function HomePage() {
   const infrastructureLayers = getInfrastructureByLayers();
   const regions = getRegionActivityOverview();
 
-  // Live lunar state
   const lunarState = getLunarStateDisplay();
+  const activeMissions = getActiveMissionCount();
 
-  const stats = [
-    { label: "active", value: getActiveMissionCount() },
-    { label: "missions", value: allMissions.length },
-    { label: "entities", value: allEntities.length },
-    { label: "systems", value: getAllInfrastructure().length },
-    { label: "dst", value: lunarState.distance },
-    { label: "phase", value: lunarState.phaseName },
-  ];
+  // Prepare map data
+  const regionMarkers = allRegions.map((r) => ({
+    id: r.id,
+    slug: r.slug,
+    name: r.name,
+    coordinates: r.coordinates,
+    missionCount: getMissionsByRegion(r.id).length,
+  }));
+  const featureMarkers = MAJOR_LUNAR_FEATURES.slice(0, 25).map((f) => ({
+    id: f.id,
+    name: f.name,
+    featureType: f.featureType,
+    coordinates: f.coordinates,
+  }));
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <HeroSection />
+      {/* ── Hero: Lunar telemetry as the opening statement ── */}
+      <HeroSection
+        lunarState={lunarState}
+        activeMissions={activeMissions}
+        totalMissions={allMissions.length}
+      />
 
-      <section className="mb-28 sm:mb-36">
-        <StatsBar stats={stats} />
+      {/* ── Lunar Surface Map — full width, right after hero ── */}
+      <section className="mb-28 sm:mb-36 -mx-4 sm:mx-0">
+        <div className="px-4 sm:px-0 mb-4">
+          <SectionHeading title="Lunar Surface" viewAllHref="/regions" />
+        </div>
+        <LunarMap regions={regionMarkers} features={featureMarkers} />
       </section>
 
+      {/* ── Mission Register ── */}
       <section className="mb-28 sm:mb-36">
         <SectionHeading title="Mission Register" viewAllHref="/missions" />
         <div className="mt-8">
@@ -95,6 +112,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Dispatches ── */}
       <section className="mb-28 sm:mb-36">
         <SectionHeading title="Dispatches" viewAllHref="/activity" />
         <div className="mt-8 max-w-2xl">
@@ -113,6 +131,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Infrastructure ── */}
       <section className="mb-28 sm:mb-36">
         <SectionHeading title="Infrastructure" viewAllHref="/infrastructure" />
         <div className="mt-8">
@@ -120,6 +139,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ── Entities + Regions ── */}
       <section className="mb-28 sm:mb-36 grid grid-cols-1 lg:grid-cols-2 gap-20">
         <div>
           <SectionHeading title="Entities" viewAllHref="/entities" />
@@ -128,13 +148,14 @@ export default async function HomePage() {
           </div>
         </div>
         <div>
-          <SectionHeading title="Lunar Surface" viewAllHref="/regions" />
+          <SectionHeading title="Region Activity" viewAllHref="/regions" />
           <div className="mt-8">
             <RegionActivityMap regions={regions} />
           </div>
         </div>
       </section>
 
+      {/* ── Horizon ── */}
       <section className="mb-28 sm:mb-36">
         <SectionHeading title="Horizon" viewAllHref="/timeline" />
         <div className="mt-8 max-w-2xl">
