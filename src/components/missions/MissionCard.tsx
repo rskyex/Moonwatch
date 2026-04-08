@@ -17,39 +17,43 @@ export default function MissionCard({ mission, entities }: MissionCardProps) {
   const entityNames = entities
     ?.slice(0, 2)
     .map((e) => e.shortName ?? e.name)
-    .join(" · ");
+    .join(" / ");
+  const isActive = ["launched", "in-transit", "in-orbit", "on-surface"].includes(mission.status);
 
   return (
     <Card href={`/missions/${mission.slug}`}>
-      {/* Type eyebrow */}
-      <p className="text-[10px] tracking-[0.15em] uppercase text-dim mb-2">
-        {mission.type.replace("-", " ")}
-      </p>
-
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-[15px] font-medium text-foreground leading-snug">
-          {mission.name}
-        </h3>
-        <span className={`text-[11px] font-medium shrink-0 ${statusColor.split(" ")[0]}`}>
+      {/* Meta line */}
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-[9px] tracking-[0.25em] uppercase text-dim">
+          {mission.type.replace("-", " ")}
+        </span>
+        <span className={`text-[10px] tracking-wide ${isActive ? "text-cold/60" : statusColor.split(" ")[0]}`}>
           {statusLabel}
         </span>
       </div>
 
-      <div className="mt-1.5 flex flex-wrap items-center gap-x-2 text-[11px] text-dim">
+      {/* Name */}
+      <h3 className="text-[16px] font-light text-foreground leading-snug">
+        {mission.name}
+      </h3>
+
+      {/* Context */}
+      <div className="mt-1.5 flex items-center gap-2 text-[11px] text-dim">
         {mission.launchDate && (
-          <time dateTime={mission.launchDate} className="tabular-nums">
+          <time dateTime={mission.launchDate} className="tabular-nums font-mono">
             {formatDate(mission.launchDate)}
           </time>
         )}
         {entityNames && (
           <>
-            {mission.launchDate && <span>&middot;</span>}
+            {mission.launchDate && <span className="text-border">/</span>}
             <span>{entityNames}</span>
           </>
         )}
       </div>
 
-      <p className="mt-3 text-[13px] text-muted line-clamp-2 leading-relaxed">
+      {/* Description */}
+      <p className="mt-3 text-[13px] text-muted/70 font-light line-clamp-2 leading-relaxed">
         {mission.description}
       </p>
     </Card>

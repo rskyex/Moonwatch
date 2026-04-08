@@ -3,37 +3,33 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { navigation, siteConfig } from "@/config/site";
+import { navigation } from "@/config/site";
 
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="border-b border-border/60 bg-background/90 backdrop-blur-sm sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-12 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-[13px] font-medium tracking-tight text-foreground">
-              {siteConfig.siteName}
+        <div className="flex h-11 items-center justify-between border-b border-border/40">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="w-1 h-1 rounded-full bg-cold/50" />
+            <span className="text-[12px] font-medium tracking-[0.05em] text-foreground">
+              Moonwatch
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-0.5">
+          <nav className="hidden md:flex items-center">
             {navigation.map((item) => {
               const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+                item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-2.5 py-1 text-[12px] transition-colors ${
-                    isActive
-                      ? "text-foreground"
-                      : "text-muted hover:text-foreground"
+                  className={`px-3 py-1 text-[11px] tracking-wide ${
+                    isActive ? "text-foreground" : "text-dim hover:text-muted"
                   }`}
                 >
                   {item.name}
@@ -44,8 +40,8 @@ export function Header() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-muted hover:text-foreground"
-            aria-label="Toggle menu"
+            className="md:hidden p-1.5 text-dim hover:text-muted"
+            aria-label="Menu"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               {mobileOpen ? (
@@ -58,7 +54,7 @@ export function Header() {
         </div>
 
         {mobileOpen && (
-          <nav className="md:hidden pb-3 pt-1 border-t border-border/40">
+          <nav className="md:hidden py-3 space-y-1">
             {navigation.map((item) => {
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
@@ -66,8 +62,8 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-2 py-1.5 text-[13px] ${
-                    isActive ? "text-foreground" : "text-muted hover:text-foreground"
+                  className={`block px-1 py-1.5 text-[12px] ${
+                    isActive ? "text-foreground" : "text-dim hover:text-muted"
                   }`}
                 >
                   {item.name}

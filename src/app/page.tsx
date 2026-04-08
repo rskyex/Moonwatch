@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { Entity, Mission } from "@/types";
 
 import HeroSection from "@/components/overview/HeroSection";
 import StatsBar from "@/components/overview/StatsBar";
@@ -63,35 +62,35 @@ export default function HomePage() {
 
   const stats = [
     { label: "active missions", value: getActiveMissionCount() },
-    { label: "missions tracked", value: allMissions.length },
+    { label: "tracked", value: allMissions.length },
     { label: "entities", value: allEntities.length },
-    { label: "infrastructure systems", value: getAllInfrastructure().length },
+    { label: "systems", value: getAllInfrastructure().length },
     { label: "sources", value: allSources.length },
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      {/* ── Hero ── */}
+      {/* ── Hero — cinematic entry ── */}
       <HeroSection />
 
-      {/* ── Stats: quiet inline context ── */}
-      <section className="mb-20">
+      {/* ── Quiet context line ── */}
+      <section className="mb-28 sm:mb-36">
         <StatsBar stats={stats} />
       </section>
 
-      {/* ── Missions: editorial text list ── */}
-      <section className="mb-24">
-        <SectionHeading title="Missions" viewAllHref="/missions" />
-        <div className="mt-6">
+      {/* ── Missions — the core register ── */}
+      <section className="mb-28 sm:mb-36">
+        <SectionHeading title="Mission Register" viewAllHref="/missions" />
+        <div className="mt-8">
           <MissionStatusOverview groups={missionStatusGroups} />
         </div>
       </section>
 
-      {/* ── Activity: recent dispatches ── */}
-      <section className="mb-24">
-        <SectionHeading title="Recent Activity" viewAllHref="/activity" />
-        <div className="mt-5 max-w-3xl">
+      {/* ── Dispatches — recent signals ── */}
+      <section className="mb-28 sm:mb-36">
+        <SectionHeading title="Dispatches" viewAllHref="/activity" />
+        <div className="mt-8 max-w-2xl">
           {recentUpdates.map((update) => {
             const source = getSourceById(update.sourceId);
             return (
@@ -107,34 +106,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Infrastructure: horizontal layers ── */}
-      <section className="mb-24">
+      {/* ── Infrastructure — systems layer ── */}
+      <section className="mb-28 sm:mb-36">
         <SectionHeading title="Infrastructure" viewAllHref="/infrastructure" />
-        <div className="mt-6">
+        <div className="mt-8">
           <InfrastructureLayers layers={infrastructureLayers} />
         </div>
       </section>
 
-      {/* ── Actors + Regions: two-column editorial ── */}
-      <section className="mb-24 grid grid-cols-1 lg:grid-cols-2 gap-16">
+      {/* ── Two-column: Entities + Regions ── */}
+      <section className="mb-28 sm:mb-36 grid grid-cols-1 lg:grid-cols-2 gap-20">
         <div>
           <SectionHeading title="Entities" viewAllHref="/entities" />
-          <div className="mt-6">
+          <div className="mt-8">
             <EcosystemOverview actors={actors} />
           </div>
         </div>
         <div>
-          <SectionHeading title="Lunar Regions" viewAllHref="/regions" />
-          <div className="mt-6">
+          <SectionHeading title="Lunar Surface" viewAllHref="/regions" />
+          <div className="mt-8">
             <RegionActivityMap regions={regions} />
           </div>
         </div>
       </section>
 
-      {/* ── Timeline: upcoming milestones ── */}
-      <section className="mb-20">
-        <SectionHeading title="Upcoming Milestones" viewAllHref="/timeline" />
-        <div className="mt-6 max-w-3xl">
+      {/* ── Horizon — what is coming ── */}
+      <section className="mb-28 sm:mb-36">
+        <SectionHeading title="Horizon" viewAllHref="/timeline" />
+        <div className="mt-8 max-w-2xl">
           {upcomingMilestones.map((milestone) => (
             <MilestoneCard
               key={milestone.id}

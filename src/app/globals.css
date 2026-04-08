@@ -12,27 +12,32 @@
   --color-glow: var(--glow);
   --color-horizon: var(--horizon);
   --color-dim: var(--dim);
+  --color-cold: var(--cold);
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 }
 
 /* -----------------------------------------------------------------------
-   Moonwatch — Lunar Observatory
-   Palette: graphite, ash, silver, mineral. One cool accent.
+   Moonwatch — Near-future lunar observatory
+
+   Base: deep void, graphite, lunar ash
+   Accent: cold mineral — ice-blue used with extreme restraint
+   Depth: via surface layering, not decoration
    ----------------------------------------------------------------------- */
 
 :root {
-  --background: #09090b;
-  --foreground: #d4d4d8;
-  --surface: #18181b;
-  --surface-alt: #27272a;
-  --border-color: #2e2e33;
-  --muted: #71717a;
-  --dim: #52525b;
-  --accent: #a1a1aa;
-  --accent-soft: #1c1c22;
-  --glow: rgba(161, 161, 170, 0.05);
-  --horizon: rgba(161, 161, 170, 0.03);
+  --background: #050507;
+  --foreground: #c8c8cd;
+  --surface: #111114;
+  --surface-alt: #1a1a1f;
+  --border-color: #222228;
+  --muted: #6b6b76;
+  --dim: #45454f;
+  --accent: #8b8b96;
+  --accent-soft: #12121a;
+  --cold: #7dd3fc;
+  --glow: rgba(125, 211, 252, 0.04);
+  --horizon: rgba(125, 211, 252, 0.02);
 }
 
 @media (prefers-color-scheme: light) {
@@ -46,8 +51,9 @@
     --dim: #a1a1aa;
     --accent: #52525b;
     --accent-soft: #f4f4f5;
-    --glow: rgba(0, 0, 0, 0.03);
-    --horizon: rgba(0, 0, 0, 0.02);
+    --cold: #0284c7;
+    --glow: rgba(2, 132, 199, 0.04);
+    --horizon: rgba(2, 132, 199, 0.02);
   }
 }
 
@@ -56,15 +62,18 @@ body {
   color: var(--foreground);
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
+/* Scrollbar — near invisible */
+::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 1px; }
 
-/* Selection */
-::selection { background: var(--accent-soft); color: var(--foreground); }
+/* Selection — cold mineral highlight */
+::selection { background: rgba(125, 211, 252, 0.15); color: var(--foreground); }
 
-/* Smooth scroll */
 html { scroll-behavior: smooth; }
+
+/* Subtle transitions on all interactive elements */
+a, button { transition: color 0.15s ease, border-color 0.2s ease, opacity 0.15s ease; }

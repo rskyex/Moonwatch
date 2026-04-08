@@ -5,35 +5,34 @@ interface RegionActivityMapProps {
   regions: RegionActivity[];
 }
 
-/** Region activity — text-led list, not card grid */
 export default function RegionActivityMap({ regions }: RegionActivityMapProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4">
+    <div className="space-y-3">
       {regions.map(({ region, missionCount, activeMissions, upcomingMissions }) => (
         <Link
           key={region.id}
           href={`/regions/${region.slug}`}
-          className="group flex items-start justify-between py-2 border-b border-border/40 hover:border-muted/40 transition-colors"
+          className="group flex items-baseline justify-between py-1.5"
         >
-          <div className="min-w-0">
-            <span className="text-[13px] font-medium text-foreground group-hover:text-accent transition-colors">
+          <div className="min-w-0 flex items-baseline gap-2">
+            <span className="text-[14px] font-light text-foreground group-hover:text-cold transition-colors">
               {region.name}
             </span>
             {region.coordinates && (
-              <span className="ml-2 text-[10px] text-dim font-mono">
+              <span className="text-[9px] text-dim/50 font-mono tracking-wider">
                 {region.coordinates.lat.toFixed(0)}&deg;
               </span>
             )}
           </div>
-          <div className="flex items-center gap-3 text-[11px] tabular-nums shrink-0 ml-3">
+          <div className="flex items-center gap-2 ml-3 shrink-0 text-[11px] tabular-nums">
             {activeMissions.length > 0 && (
-              <span className="text-foreground">{activeMissions.length} active</span>
+              <span className="text-cold/70">{activeMissions.length} active</span>
             )}
             {upcomingMissions.length > 0 && (
-              <span className="text-dim">{upcomingMissions.length} upcoming</span>
+              <span className="text-dim">{upcomingMissions.length} planned</span>
             )}
             {activeMissions.length === 0 && upcomingMissions.length === 0 && (
-              <span className="text-dim">{missionCount} total</span>
+              <span className="text-dim/50">{missionCount}</span>
             )}
           </div>
         </Link>
